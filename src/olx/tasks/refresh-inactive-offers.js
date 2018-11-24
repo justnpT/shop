@@ -7,6 +7,7 @@ let su = new setup(config.olx_home);
     const page = await su.start();
 
     // await page.screenshot({path: 'example.png'});
+    //  
 
     await su.stop();
 })();
