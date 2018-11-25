@@ -1,6 +1,8 @@
 /dist
 /tmp
 /node_modules
-.idea
+.idea/
 .gradle
 .idea/workspace.xml
+/.idea/
+/.idea/workspace.xml
