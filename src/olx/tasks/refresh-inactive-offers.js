@@ -5,6 +5,7 @@ let su = new setup(config.olx_home);
 
 let home = require('../elements/desktop/logged_out/home');
 let login = require('../elements/desktop/logged_out/modals/login');
+let advertisments = require('../elements/desktop/logged_in/ogloszenia');
 
 (async () => {
     const page = await su.start();
@@ -16,6 +17,12 @@ let login = require('../elements/desktop/logged_out/modals/login');
     await page.type(login.password, cred.olx.password);
     await page.waitForSelector(login.logIn, {visible: true});
     await page.click(login.logIn);
+    await page.waitForSelector(advertisments.zakonczone, {visible: true});
+    await page.click(advertisments.zakonczone);
+    await page.waitForSelector(advertisments.zakonczoneOgloszenia.aktywizujZaznaczoneCheckbox, {visible: true});
+    await page.click(advertisments.zakonczoneOgloszenia.aktywizujZaznaczoneCheckbox);
+    await page.waitForSelector(advertisments.zakonczoneOgloszenia.aktywizujZaznaczone, {visible: true});
+    await page.click(advertisments.zakonczoneOgloszenia.aktywizujZaznaczone);
 
     await su.stop();
 })();
