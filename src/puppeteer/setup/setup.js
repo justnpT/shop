@@ -1,5 +1,5 @@
 let puppeteer = require("puppeteer")
-let options = require('../launch-options')
+let options = require('../../launch-options')
 
 module.exports = class setup {
 
