@@ -2,6 +2,10 @@
 /tmp
 /node_modules
 
+# Creds
+
+src/google_sheet/creds/*
+
 # User-specific stuff
 .idea/**/workspace.xml
 .idea/**/tasks.xml
