@@ -2,7 +2,7 @@ var GoogleSpreadsheet = require('google-spreadsheet')
 // var async = require('../../../async')
 
 class sheetReader {
-    constructor(spreadsheet_key, ) {
+    constructor(spreadsheet_key) {
         this.doc = new GoogleSpreadsheet(spreadsheet_key);
         this.sheet;
     }
