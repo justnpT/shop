@@ -4,7 +4,7 @@
 
 # Creds
 
-src/google_sheet/creds/*
+src/apis/google_sheet/creds/*
 
 # User-specific stuff
 .idea/**/workspace.xml
