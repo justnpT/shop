@@ -15,7 +15,7 @@ class sheetReader {
             }
         }
 
-        let creds = require('./wise-ally-250916-b7a8fb9d29a5.json');
+        let creds = require('./creds/shop-250916-e18ae184fd04.json');
         // https://cmichel.io/how-to-access-google-spreadsheet-with-node/
         // https://github.com/theoephraim/node-google-spreadsheet#service-account-recommended-method
         this.doc.useServiceAccountAuth(creds, step);
