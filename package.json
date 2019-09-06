@@ -9,7 +9,7 @@
     "request": "^2.88.0"
   },
   "scripts": {
-    "read": "node -r esm .\\src\\apis\\google_sheet\\runner.js",
+    "runner": "node -r esm .\\src\\apis\\google_sheet\\runner.js",
     "gsheet": "node .\\src\\apis\\google_sheet\\gsheet.js"
   }
 }

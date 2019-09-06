@@ -1,0 +1,113 @@
+{
+  "$id": "https://example.com/arrays.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "A representation of bravoos shop items",
+  "example": "http://json-schema.org/learn/miscellaneous-examples.html",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/shop_item_area" }
+    }
+  },
+  "definitions": {
+    "shop_item_area": {
+      "type": "object",
+      "required": [ "item data", "product decisions", "item status information", "item historical data"],
+      "properties": {
+        "item data": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/item data" }
+        },
+        "product decisions": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/product decisions" }
+        },
+        "item status information": {
+           "type": "array",
+          "items": { "$ref": "#/definitions/item status information" }
+        },
+        "item historical data": {
+           "type": "array",
+          "items": { "$ref": "#/definitions/item historical data" }
+        }
+      }
+    },
+    "item data": {
+      "type": "object",
+      "required": [ "name", "title", "description", "photos", "category", "price" ],
+      "properties": {
+        "columns": {
+          "type": "array",
+          "description": "numbers of columns related to the area"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the item."
+        },
+        "title": {
+          "type": "string",
+          "description": "The tile of the item"
+        },
+        "description": {
+          "type": "string",
+          "description": "The description of the item"
+        },
+        "photos": {
+          "type": "string",
+          "description": "Paths to photos folder related to the item"
+        },
+        "category": {
+          "type": "string",
+          "description": "The category of the item, perhaps needs to be expanded for other shops"
+        },
+        "price": {
+          "type": "number",
+          "description": "The price of the item"
+        }
+      }
+    },
+    "product decisions": {
+      "type": "object",
+      "required": [ "veggieName", "veggieLike" ],
+      "properties": {
+        "veggieName": {
+          "type": "string",
+          "description": "The name of the vegetable."
+        },
+        "veggieLike": {
+          "type": "boolean",
+          "description": "Do I like this vegetable?"
+        }
+      }
+    },
+    "item status information": {
+      "type": "object",
+      "required": [ "veggieName", "veggieLike" ],
+      "properties": {
+        "veggieName": {
+          "type": "string",
+          "description": "The name of the vegetable."
+        },
+        "veggieLike": {
+          "type": "boolean",
+          "description": "Do I like this vegetable?"
+        }
+      }
+    },
+    "item historical data": {
+      "type": "object",
+      "required": [ "veggieName", "veggieLike" ],
+      "properties": {
+        "veggieName": {
+          "type": "string",
+          "description": "The name of the vegetable."
+        },
+        "veggieLike": {
+          "type": "boolean",
+          "description": "Do I like this vegetable?"
+        }
+      }
+    }
+  }
+}
