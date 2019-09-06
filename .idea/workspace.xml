@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="050b48e7-8470-4e55-a6b0-ac43798d5548" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apis/google_sheet/gsheet.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apis/google_sheet/gsheet.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apis/google_sheet/reader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apis/google_sheet/reader.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/puppeteer/olx/tasks/put-offer-data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/puppeteer/olx/tasks/get-offer-data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/puppeteer/olx/tasks/get-offer-data.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -454,7 +452,7 @@
       <workItem from="1567756768941" duration="2882000" />
       <workItem from="1567759713084" duration="97000" />
       <workItem from="1567759810592" duration="7175000" />
-      <workItem from="1567771417916" duration="8865000" />
+      <workItem from="1567771417916" duration="9256000" />
     </task>
     <servers />
   </component>

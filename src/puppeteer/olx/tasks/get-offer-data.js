@@ -31,8 +31,8 @@ let offer = require('../elements/desktop/logged_in/offer');
     const newPagePromise = new Promise(x => browser.once('targetcreated', target => x(target.page()));
     await page.click('my-link');
     const newPage = await newPagePromise;
-    newPage.waitForSelector(...)
-
+    // newPage.waitForSelector(...)
+s
     //above improved:
 
     function getNewPageWhenLoaded() {
