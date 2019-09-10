@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="050b48e7-8470-4e55-a6b0-ac43798d5548" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/apis/google_sheet/gsheet_reader.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/puppeteer/olx/olx_writer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apis/google_sheet/gsheet.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apis/google_sheet/reader.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/apis/google_sheet/runner.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apis/google_sheet/runner.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/database.js" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -332,7 +330,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542130969688" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/puppeteer/olx/creds" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -344,18 +342,18 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\workspace\shop\src\puppeteer\olx" />
+      <recent name="C:\workspace\shop\src\olx\tasks" />
+      <recent name="C:\workspace\shop\src\olx\elements\desktop\modals" />
+      <recent name="C:\workspace\shop\src" />
+      <recent name="C:\workspace\shop\src\olx" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\workspace\shop\src\puppeteer" />
       <recent name="C:\workspace\shop\src\apis" />
       <recent name="C:\workspace\shop\src\olx\elements\desktop\logged_out" />
       <recent name="C:\workspace\shop\src" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\workspace\shop\src\olx\tasks" />
-      <recent name="C:\workspace\shop\src\olx\elements\desktop\modals" />
-      <recent name="C:\workspace\shop\src" />
-      <recent name="C:\workspace\shop\src\olx" />
-      <recent name="C:\workspace\shop\src\main\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -458,7 +456,7 @@
       <workItem from="1567759713084" duration="97000" />
       <workItem from="1567759810592" duration="7175000" />
       <workItem from="1567771417916" duration="9341000" />
-      <workItem from="1568100227409" duration="6927000" />
+      <workItem from="1568100227409" duration="7928000" />
     </task>
     <servers />
   </component>
