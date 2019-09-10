@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="050b48e7-8470-4e55-a6b0-ac43798d5548" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/apis/google_sheet/runner.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/runner.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/credentials-template.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/launch-options.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/puppeteer/launch-options.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/puppeteer/olx/olx_writer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/puppeteer/olx/olx_writer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/puppeteer/setup/setup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/puppeteer/setup/setup.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -347,9 +352,10 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\workspace\shop\src\puppeteer" />
+      <recent name="C:\workspace\shop\src\puppeteer\olx\creds" />
+      <recent name="C:\workspace\shop\src" />
       <recent name="C:\workspace\shop\src\apis" />
       <recent name="C:\workspace\shop\src\olx\elements\desktop\logged_out" />
-      <recent name="C:\workspace\shop\src" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -371,7 +377,7 @@
     <configuration name="gsheet_reader.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/apis/google_sheet/gsheet_reader.js" working-dir="$PROJECT_DIR$/src/apis/google_sheet">
       <method v="2" />
     </configuration>
-    <configuration name="runner.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="runner.js" working-dir="$PROJECT_DIR$/src/apis/google_sheet">
+    <configuration name="runner.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/runner.js" working-dir="$PROJECT_DIR$/src/apis/google_sheet">
       <method v="2" />
     </configuration>
     <configuration name="gsheet" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
@@ -452,7 +458,7 @@
       <workItem from="1567759713084" duration="97000" />
       <workItem from="1567759810592" duration="7175000" />
       <workItem from="1567771417916" duration="9341000" />
-      <workItem from="1568100227409" duration="7993000" />
+      <workItem from="1568100227409" duration="10041000" />
     </task>
     <servers />
   </component>
