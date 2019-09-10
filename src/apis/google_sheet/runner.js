@@ -1,7 +1,8 @@
-import sheetReader from './reader.js'
+import sheetReader from './gsheet_reader.js'
 
 (async() => {
-    let sheet = new sheetReader('1R0pNdZ3JhVjYbfsT9z7EEkqlfwqsVgBEUfjQIf6gtV4');
-    await sheet.setAuth();
-    await sheet.getInfoAndWorksheets();
+    let reader = new sheetReader('1R0pNdZ3JhVjYbfsT9z7EEkqlfwqsVgBEUfjQIf6gtV4');
+    await reader.updateFreshItemList();
+    // await sheet.setAuth();
+    // await sheet.getInfoAndWorksheets();
 })();
