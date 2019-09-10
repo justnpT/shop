@@ -4,26 +4,11 @@
     <list default="true" id="050b48e7-8470-4e55-a6b0-ac43798d5548" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apis/google_sheet/creds/nothing.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/api/google_sheet/creds/nothing.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apis/google_sheet/gsheet_reader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/api/google_sheet/gsheet_reader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apis/google_sheet/items_schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/api/google_sheet/items_schema.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apis/olx/writer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/api/olx/writer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/puppeteer/launch-options.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/launch-options.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/puppeteer/olx/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/puppeteer/olx/creds/nothing.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/creds/nothing.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/puppeteer/olx/elements/desktop/logged_in/offer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/elements/desktop/logged_in/offer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/puppeteer/olx/elements/desktop/logged_in/ogloszenia.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/elements/desktop/logged_in/ogloszenia.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/puppeteer/olx/elements/desktop/logged_out/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/elements/desktop/logged_out/home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/puppeteer/olx/elements/desktop/logged_out/modals/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/elements/desktop/logged_out/modals/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/puppeteer/olx/elements/elements-provider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/elements/elements-provider.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/puppeteer/olx/olx_writer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/olx_writer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/puppeteer/olx/tasks/get-offer-data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/tasks/get-offer-data.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/puppeteer/olx/tasks/put-offer-data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/tasks/put-offer-data.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/puppeteer/olx/tasks/refresh-inactive-offers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/tasks/refresh-inactive-offers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/puppeteer/olx/tests/inactive-offers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/tests/inactive-offers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/puppeteer/setup/setup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/setup/setup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/puppeteer/setup/teardown.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/setup/teardown.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/runner.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/runner.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integration/user/launch-options.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/pupp.conf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/creds/nothing.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/olx_writer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/olx_writer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integration/user/setup/setup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/setup/setup.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -347,7 +332,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542130969688" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../rentencockpit" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/integration/user" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -360,11 +345,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\workspace\shop\src\integration\user" />
       <recent name="C:\workspace\shop\src\puppeteer\olx\creds" />
       <recent name="C:\workspace\shop\src\puppeteer\olx" />
       <recent name="C:\workspace\shop\src\olx\tasks" />
       <recent name="C:\workspace\shop\src\olx\elements\desktop\modals" />
-      <recent name="C:\workspace\shop\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\workspace\shop\src\integration" />
@@ -474,7 +459,7 @@
       <workItem from="1567759713084" duration="97000" />
       <workItem from="1567759810592" duration="7175000" />
       <workItem from="1567771417916" duration="9341000" />
-      <workItem from="1568100227409" duration="10397000" />
+      <workItem from="1568100227409" duration="11562000" />
     </task>
     <servers />
   </component>

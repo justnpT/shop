@@ -6,16 +6,6 @@ class olxWriter extends setup {
         this.options = options;
     }
 
-    async start() {
-        this.browser = await puppeteer.launch(this.options);
-        this.page = await this.browser.newPage();
-        await this.page.goto(this.url);
-        return this.page;
-    }
-
-    async stop() {
-        await this.browser.close();
-    }
 
     async write() {
 
