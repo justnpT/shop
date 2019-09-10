@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="050b48e7-8470-4e55-a6b0-ac43798d5548" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/creds/credentials-template.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/elements/desktop/logged_in/offer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/elements/pages/offer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/elements/desktop/logged_in/ogloszenia.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/elements/pages/ogloszenia.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/elements/desktop/logged_out/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/elements/pages/home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/elements/desktop/logged_out/modals/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/elements/modals/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/elements/elements-provider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/elements/elements-provider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/olx_writer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/olx_writer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/tasks/get-offer-data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/reusable_steps/get-offer-data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/tasks/put-offer-data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/tasks/refresh-inactive-offers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/reusable_steps/refresh-inactive-offers.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -346,11 +356,11 @@
       <recent name="C:\workspace\shop\src\olx\elements\desktop\modals" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\workspace\shop\src\integration\user\olx\elements\modals" />
+      <recent name="C:\workspace\shop\src\integration\user\olx\elements\pages" />
       <recent name="C:\workspace\shop\src\integration" />
       <recent name="C:\workspace\shop\src\puppeteer" />
       <recent name="C:\workspace\shop\src\puppeteer\olx\creds" />
-      <recent name="C:\workspace\shop\src" />
-      <recent name="C:\workspace\shop\src\apis" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -453,7 +463,7 @@
       <workItem from="1567759713084" duration="97000" />
       <workItem from="1567759810592" duration="7175000" />
       <workItem from="1567771417916" duration="9341000" />
-      <workItem from="1568100227409" duration="11580000" />
+      <workItem from="1568100227409" duration="16691000" />
     </task>
     <servers />
   </component>

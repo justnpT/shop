@@ -1,12 +1,12 @@
 const setup = require('../../setup/setup');
 let config = require('../config');
-let cred = require(config.credentials_path);
-let su = new setup(config.olx_home);
+let cred = require(config.credentials);
+let su = new setup(config.baseUrl);
 
-let home = require('../elements/desktop/logged_out/home');
-let login = require('../elements/desktop/logged_out/modals/login');
-let advertisments = require('../elements/desktop/logged_in/ogloszenia');
-let offer = require('../elements/desktop/logged_in/offer');
+let home = require('../elements/pages/home');
+let login = require('../elements/modals/login');
+let advertisments = require('../elements/pages/ogloszenia');
+let offer = require('../elements/pages/offer');
 
 (async () => {
     const page = await su.start();
