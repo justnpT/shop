@@ -5,9 +5,11 @@ class olxWriter extends setup {
         super(url)
     }
 
-    async write(freshItemList) {
-        // for all items:
-        // if item[update] == 1 i item[u_olx] == 1 | error otherwise
+    async write(itemList) {
+        for (let item of itemList) {
+            if (item['update'] != 1) {throw new Error(('no decision to update '+item['name']))}
+            if (item['u_olx'] != 1) {throw new Error(('no decision to update the olx shop with '+item['name']))}
+        }
         // on home click 'moj olx'
         // fill login modal and click 'zaloguj sie'
         // on home click 'moj olx'
