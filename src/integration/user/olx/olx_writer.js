@@ -1,4 +1,4 @@
-import setup from './../setup/setup'
+import setup from '../setup/setup'
 
 class olxWriter extends setup {
     constructor(url) {

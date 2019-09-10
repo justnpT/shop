@@ -4,8 +4,8 @@
 
 # Creds
 
-src/apis/google_sheet/creds/*
-src/puppeteer/olx/creds/*
+src/integration/api/google_sheet/creds/*
+src/integration/user/olx/creds/*
 
 # User-specific stuff
 .idea/**/workspace.xml
