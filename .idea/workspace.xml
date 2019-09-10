@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="050b48e7-8470-4e55-a6b0-ac43798d5548" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/integration/user/launch-options.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/pupp.conf.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/creds/nothing.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/olx_writer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/olx_writer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/integration/user/setup/setup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/setup/setup.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -459,7 +453,7 @@
       <workItem from="1567759713084" duration="97000" />
       <workItem from="1567759810592" duration="7175000" />
       <workItem from="1567771417916" duration="9341000" />
-      <workItem from="1568100227409" duration="11562000" />
+      <workItem from="1568100227409" duration="11580000" />
     </task>
     <servers />
   </component>
