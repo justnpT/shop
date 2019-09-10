@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="050b48e7-8470-4e55-a6b0-ac43798d5548" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/puppeteer/olx/olx_writer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apis/google_sheet/runner.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apis/google_sheet/runner.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/database.js" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -343,11 +339,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\workspace\shop\src\puppeteer\olx\creds" />
       <recent name="C:\workspace\shop\src\puppeteer\olx" />
       <recent name="C:\workspace\shop\src\olx\tasks" />
       <recent name="C:\workspace\shop\src\olx\elements\desktop\modals" />
       <recent name="C:\workspace\shop\src" />
-      <recent name="C:\workspace\shop\src\olx" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\workspace\shop\src\puppeteer" />
@@ -456,7 +452,7 @@
       <workItem from="1567759713084" duration="97000" />
       <workItem from="1567759810592" duration="7175000" />
       <workItem from="1567771417916" duration="9341000" />
-      <workItem from="1568100227409" duration="7928000" />
+      <workItem from="1568100227409" duration="7993000" />
     </task>
     <servers />
   </component>
