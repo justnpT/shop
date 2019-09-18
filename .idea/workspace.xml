@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="050b48e7-8470-4e55-a6b0-ac43798d5548" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/elements/elements-provider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/elements/elements-provider.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/elements/modals/login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/elements/modals/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/elements/pages/modal.login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/elements/pages/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/elements/pages/page.home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/elements/pages/offer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/elements/pages/offer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/elements/pages/page.offer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/elements/pages/ogloszenia.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/elements/pages/page.ogloszenia.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/reusable_steps/get-offer-data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/reusable_steps/get-offer-data.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/reusable_steps/refresh-inactive-offers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/reusable_steps/refresh-inactive-offers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/elements/pages/modal.login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/elements/pages/modal.login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/elements/pages/page.home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/elements/pages/page.home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/elements/pages/page.offer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/elements/pages/page.offer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/elements/pages/page.ogloszenia.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/elements/pages/page.ogloszenia.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integration/user/utils/actions/actions-click.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/utils/actions/actions-click.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,30 +24,30 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="1" />
-          <entry key="js" value="216" />
+          <entry key="js" value="470" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="216" />
+          <entry key="JavaScript" value="470" />
           <entry key="PLAIN_TEXT" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="js" value="19" />
+          <entry key="js" value="20" />
           <entry key="json" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JSON" value="2" />
-          <entry key="JavaScript" value="19" />
+          <entry key="JavaScript" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.opened" value="2" />
@@ -62,6 +57,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/integration/user/utils/actions/actions-click.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="867">
+              <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/runner.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -74,23 +78,31 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/integration/user/olx/reusable_steps/get-offer-data.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="39" lean-forward="true" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+            <state relative-caret-position="68">
+              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/integration/user/olx/elements/pages/page.home.js">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret lean-forward="true" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/integration/user/olx/elements/pages/modal.login.js">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -100,17 +112,20 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/integration/user/olx/elements/pages/page.offer.js">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-line="1" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/integration/user/olx/elements/pages/page.ogloszenia.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/integration/user/olx/config.js">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -143,11 +158,14 @@
       <find>options.maximumImplicitWaitTimeout</find>
       <find>maxImplicitWait</find>
       <find>globalTimeout</find>
+      <find>'</find>
+      <find>,</find>
     </findStrings>
     <replaceStrings>
       <replace>options.maximumImplicitWaitForElements</replace>
       <replace>options.maximumImplicitWaitTimeout</replace>
       <replace>options.timeout</replace>
+      <replace>&quot;</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -451,7 +469,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/integration/user/utils/actions/actions-click.js" />
         <option value="$PROJECT_DIR$/src/integration/user/pupp.conf.js" />
         <option value="$PROJECT_DIR$/src/integration/user/utils/monitoring/movement.js" />
         <option value="$PROJECT_DIR$/src/integration/user/setup/setup.js" />
@@ -460,6 +477,11 @@
         <option value="$PROJECT_DIR$/src/runner.js" />
         <option value="$PROJECT_DIR$/src/integration/user/olx/elements/elements-provider.js" />
         <option value="$PROJECT_DIR$/src/integration/user/olx/reusable_steps/get-offer-data.js" />
+        <option value="$PROJECT_DIR$/src/integration/user/olx/elements/pages/page.offer.js" />
+        <option value="$PROJECT_DIR$/src/integration/user/olx/elements/pages/modal.login.js" />
+        <option value="$PROJECT_DIR$/src/integration/user/olx/elements/pages/page.ogloszenia.js" />
+        <option value="$PROJECT_DIR$/src/integration/user/olx/elements/pages/page.home.js" />
+        <option value="$PROJECT_DIR$/src/integration/user/utils/actions/actions-click.js" />
       </list>
     </option>
   </component>
@@ -638,19 +660,19 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\workspace\shop\src\integration\api\google_sheet\creds" />
-      <recent name="C:\workspace\shop\src\integration\user\olx\elements\modals" />
-      <recent name="C:\workspace\shop\src\integration\user\olx\elements\pages" />
-      <recent name="C:\workspace\shop\src\integration" />
-      <recent name="C:\workspace\shop\src\puppeteer" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\workspace\shop\src\integration\user\utils\monitoring" />
       <recent name="C:\workspace\shop\src\integration\user\utils" />
       <recent name="C:\workspace\shop\src\integration\user" />
       <recent name="C:\workspace\shop\src\puppeteer\olx\creds" />
       <recent name="C:\workspace\shop\src\puppeteer\olx" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\workspace\shop\src\integration\user\olx\elements\pages" />
+      <recent name="C:\workspace\shop\src\integration\api\google_sheet\creds" />
+      <recent name="C:\workspace\shop\src\integration\user\olx\elements\modals" />
+      <recent name="C:\workspace\shop\src\integration" />
+      <recent name="C:\workspace\shop\src\puppeteer" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -755,12 +777,12 @@
       <workItem from="1567771417916" duration="9341000" />
       <workItem from="1568100227409" duration="19316000" />
       <workItem from="1568831727936" duration="835000" />
-      <workItem from="1568836228899" duration="621000" />
+      <workItem from="1568836228899" duration="2905000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4488000" />
+    <option name="totallyTimeSpent" value="6772000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -895,13 +917,6 @@
     <entry file="file://$PROJECT_DIR$/src/integration/user/utils/actions/actions-scroll.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/integration/user/utils/actions/actions-click.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/integration/user/olx/olx_writer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -945,25 +960,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/integration/user/olx/elements/pages/page.offer.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/integration/user/olx/elements/pages/page.ogloszenia.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/integration/user/olx/elements/pages/page.home.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/integration/user/olx/elements/elements-provider.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/integration/user/olx/elements/pages/page.offer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/integration/user/olx/elements/pages/modal.login.js">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/integration/user/olx/elements/pages/page.ogloszenia.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/integration/user/olx/reusable_steps/get-offer-data.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="39" lean-forward="true" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+        <state relative-caret-position="68">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/integration/user/olx/elements/pages/page.home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/integration/user/utils/actions/actions-click.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
         </state>
       </provider>
     </entry>

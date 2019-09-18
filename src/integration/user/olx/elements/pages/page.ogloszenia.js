@@ -1,14 +1,14 @@
-module.exports = {
+export default class Ogloszenia {
 
-    active: '#typeactive',
-    zakonczone: '#typearchive a',
-    zakonczoneOgloszenia: { //<- to powinien byc obiekt
+    get active() {return '#typeactive'}
+    get zakonczone() {return '#typearchive a'}
+    get zakonczoneOgloszenia() {return  { //<- to powinien byc obiekt
         aktywizujZaznaczoneCheckbox: '.f_checkbox',
         aktywizujZaznaczone: '#activateme',
-    },
-    offerRows:  '#adsTable tr.row-elem',
-    previews:  '#adsTable tr.row-elem [id^=preview]',
-    previewsVar:  '#adsTable tr.row-elem:nth-child(var) [id^=preview]',
+    }}
+    get offerRows()  {return '#adsTable tr.row-elem'}
+    get previews()  {return '#adsTable tr.row-elem [id^=preview]'}
+    get previewsVar()  {return '#adsTable tr.row-elem:nth-child(var) [id^=preview]'}
 
 
 
