@@ -8,6 +8,6 @@
     "request": "^2.88.0"
   },
   "scripts": {
-    "runner": "node -r esm .\\src\\apis\\google_sheet\\runner.js"
+    "runner": "node -r esm .\\src\\runner.js"
   }
 }

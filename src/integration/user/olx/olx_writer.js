@@ -1,8 +1,8 @@
-import setup from '../setup/setup'
+import Setup from '../setup/setup'
 
-class olxWriter extends setup {
+export default class olxWriter {
     constructor(url) {
-        super(url)
+        this.url = url
     }
 
     async write(itemList) {
@@ -10,6 +10,14 @@ class olxWriter extends setup {
             if (item['update'] != 1) {throw new Error(('no decision to update '+item['name']))}
             if (item['u_olx'] != 1) {throw new Error(('no decision to update the olx shop with '+item['name']))}
         }
+
+        let setup = new Setup(this.url)
+        const page = await setup.start();
+        await page.waitForSelector(home.logIn, {visible: true});
+        await page.click(home.logIn);
+        await page.waitForSelector(login.email, {visible: true});
+
+        this.page
         // on home click 'moj olx'
         // fill login modal and click 'zaloguj sie'
         // on home click 'moj olx'
@@ -41,4 +49,4 @@ class olxWriter extends setup {
 
 }
 
-module.exports = olxWriter;
+// module.exports = olxWriter;

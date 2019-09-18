@@ -1,7 +1,7 @@
 let puppeteer = require("puppeteer")
 let options = require('../pupp.conf')
 
-module.exports = class setup {
+module.exports = class Setup {
 
     constructor(url) {
         this.url = url
