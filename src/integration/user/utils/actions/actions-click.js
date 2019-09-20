@@ -1,5 +1,4 @@
 import * as options from "../../pupp.conf";
-
 let movement = require('../monitoring/movement');
 
 export default class ActionsClick {

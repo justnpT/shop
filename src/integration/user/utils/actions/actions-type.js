@@ -1,34 +1,34 @@
-let maxImplicitWait = require('../../config/config-global').static.maximumImplicitWaitTimeout;
-let animation = require('../monitoring/animation/animation');
+import * as options from "../../pupp.conf";
+let movement = require('../monitoring/movement');
 
-module.exports = {
+export default class ActionsClick {
 
-    typeAfter_exp: async function (page, selector, text) {
+    async typeAfter_exp(page, selector, text) {
         await page.waitForSelector(selector, {visible: true});
         await this.typeWithStringConversion(page, selector, text)
-    },
+    }
 
-    typeAfter_expImp: async function (page, selector, text) {
+    async typeAfter_expImp(page, selector, text) {
         await page.waitForSelector(selector, {visible: true});
-        await page.waitFor(maxImplicitWait);
+        await page.waitFor(options.maximumImplicitWaitTimeout);
         await this.typeWithStringConversion(page, selector, text)
-    },
+    }
 
-    typeAfter_expAnim: async function (page, selector, text) {
+    async typeAfter_expAnim(page, selector, text) {
         await page.waitForSelector(selector, {visible: true});
-        await animation.waitForMovementToFinishAfterExp(page, selector);
+        await movement.waitForMovementToFinishAfterExp(page, selector);
         await this.typeWithStringConversion(page, selector, text)
-    },
+    }
 
-    typeAfter_expAnimImp: async function (page, selector, text) {
+    async typeAfter_expAnimImp(page, selector, text) {
         await page.waitForSelector(selector, {visible: true});
-        await animation.waitForMovementToFinishAfterExp(page, selector);
-        await page.waitFor(maxImplicitWait);
+        await movement.waitForMovementToFinishAfterExp(page, selector);
+        await page.waitFor(options.maximumImplicitWaitTimeout);
         await this.typeWithStringConversion(page, selector, text)
-    },
+    }
 
-    typeWithStringConversion: async function (page, selector, text) {
+    async typeWithStringConversion(page, selector, text) {
         await page.type(selector, String(text))
-    },
+    }
 
 }

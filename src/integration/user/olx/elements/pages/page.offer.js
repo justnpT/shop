@@ -1,3 +1,6 @@
+import ActionsClick from "../../../utils/actions/actions-click"
+const  actionsClick = new ActionsClick()
+
 export default class Offer {
 
     get title() {return ".offer-titlebox h1"}
