@@ -1,4 +1,7 @@
 import Setup from '../setup/setup'
+import Login from "../../../integration/user/olx/elements/pages/modal.login"
+import Home from "../../../integration/user/olx/elements/pages/page.home"
+const home = new Home()
 
 export default class olxWriter {
     constructor(url) {
@@ -13,11 +16,8 @@ export default class olxWriter {
 
         let setup = new Setup(this.url)
         const page = await setup.start();
-        await page.waitForSelector(home.logIn, {visible: true});
-        await page.click(home.logIn);
-        await page.waitForSelector(login.email, {visible: true});
-
-        this.page
+        const login = new Login(page)
+        await login.performLogin()
         // on home click 'moj olx'
         // fill login modal and click 'zaloguj sie'
         // on home click 'moj olx'
