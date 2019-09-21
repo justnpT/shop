@@ -6,6 +6,7 @@
 
 src/integration/api/google_sheet/creds/*
 src/integration/user/olx/creds/*
+credentials/*
 
 # User-specific stuff
 .idea/**/workspace.xml
