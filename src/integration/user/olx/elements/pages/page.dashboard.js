@@ -1,6 +1,6 @@
 import ActionsClick from "../../../utils/actions/actions-click"
 const  actionsClick = new ActionsClick()
-import ActionsType from "../../../utils/actions/actions-type"
+import ActionsType from "../../../utils/actions/actions-fill"
 const  actionsType = new ActionsType()
 
 export default class Dashboard {

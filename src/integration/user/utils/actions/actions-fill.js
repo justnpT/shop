@@ -1,7 +1,7 @@
 import * as options from "../../pupp.conf";
 let movement = require('../monitoring/movement');
 
-export default class ActionsClick {
+export default class ActionsFill {
 
     async typeAfter_exp(page, selector, text) {
         await page.waitForSelector(selector, {visible: true});

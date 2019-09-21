@@ -1,5 +1,5 @@
 import ActionsClick from "../../../utils/actions/actions-click"
-import ActionsType from "../../../utils/actions/actions-type"
+import ActionsType from "../../../utils/actions/actions-fill"
 const  actionsType = new ActionsType()
 const  actionsClick = new ActionsClick()
 
