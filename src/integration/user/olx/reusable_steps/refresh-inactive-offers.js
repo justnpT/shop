@@ -12,7 +12,7 @@ let advertisments = require('../elements/pages/page.ogloszenia');
     await page.waitForSelector(home.logIn, {visible: true});
     await page.click(home.logIn);
     await page.waitForSelector(login.email, {visible: true});
-    await page.type(login.email, cred.olx.username);
+    await page.type(login.email, cred.olx.email);
     await page.waitForSelector(login.password, {visible: true});
     await page.type(login.password, cred.olx.password);
     await page.waitForSelector(login.logIn, {visible: true});

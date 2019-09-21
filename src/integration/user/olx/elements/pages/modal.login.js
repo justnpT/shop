@@ -9,7 +9,7 @@ export default class Login {
         this.page = page
     }
 
-    get buttonLogin() { return "se_userLogin"}
+    get buttonLogin() { return "#se_userLogin"}
     get inputEmail() { return "#userEmail" }
     get inputPassword() { return "#userPass" }
 
@@ -26,8 +26,8 @@ export default class Login {
     }
     
     async performLogin(password, email) {
-        await this.clickButtonLogin()
-        await this.fillInputPassword(password)
         await this.fillInputEmail(email)
+        await this.fillInputPassword(password)
+        await this.clickButtonLogin()
     }
 }
