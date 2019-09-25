@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "dependencies": {
     "esm": "^3.2.25",
+    "events": "^3.0.0",
     "google-spreadsheet": "^2.0.7",
     "puppeteer": "^1.19.0",
     "request": "^2.88.0"
   },
   "scripts": {
+    "debug": "node %NODE_DEBUG_OPTION% -r esm .\\src\\runner.js",
     "runner": "node -r esm .\\src\\runner.js"
   }
 }

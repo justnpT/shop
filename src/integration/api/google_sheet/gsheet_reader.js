@@ -2,13 +2,14 @@ var GoogleSpreadsheet = require('google-spreadsheet')
 var async = require('async');
 
 class sheetReader {
-    constructor(spreadsheet_key) {
+    constructor(spreadsheet_key, eventEmitter) {
         this.doc = new GoogleSpreadsheet(spreadsheet_key);
         this.creds = require('./creds/shop-250916-e18ae184fd04.json');
         this.first_col = 1;
         this.last_col = 17;
         this.captionRow = 4;
         this.freshItemList = [];
+        this.eventEmitter = eventEmitter;
     }
 
     async setAuth() {
@@ -27,6 +28,11 @@ class sheetReader {
             this.sheet = info.worksheets[0];
             console.log('sheet 1: ' + this.sheet.title + ' ' +this.sheet.rowCount + 'x' + this.sheet.colCount);
         }.bind(this));
+    }
+
+    async updateFreshItemListMock() {
+        this.freshItemList = require("./mock1")
+        this.eventEmitter.emit('test', this.freshItemList)
     }
 
     async updateFreshItemList() {
@@ -74,6 +80,7 @@ class sheetReader {
                         }
                     }
                     console.log(this.freshItemList[15]['price'])
+                    this.eventEmitter.emit('test', this.freshItemList)
                     step();
                 }.bind(this));
             }.bind(this),
