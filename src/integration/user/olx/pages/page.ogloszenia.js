@@ -1,4 +1,4 @@
-import ActionsClick from "../../../utils/actions/actions-click"
+import ActionsClick from "../../utils/actions/actions-click"
 const  actionsClick = new ActionsClick()
 
 export default class Ogloszenia {

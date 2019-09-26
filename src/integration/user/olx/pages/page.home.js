@@ -1,9 +1,7 @@
-import ActionsClick from "../../../utils/actions/actions-click"
+import ActionsClick from "../../utils/actions/actions-click"
 const  actionsClick = new ActionsClick()
-import ActionsType from "../../../utils/actions/actions-fill"
-const  actionsType = new ActionsType()
 
-export default class Dashboard {
+export default class Home {
 
     constructor(page){
         this.page = page

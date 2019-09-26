@@ -1,7 +1,8 @@
 import Setup from '../setup/setup'
-import Login from "../../../integration/user/olx/elements/pages/modal.login"
-import Home from "../../../integration/user/olx/elements/pages/page.home"
-import NewOffer from "../../../integration/user/olx/elements/pages/page.new.offer"
+import Login from "./pages/modal.login"
+import Home from "./pages/page.home"
+import NewOffer from "./pages/page.new.offer"
+import Category from "./pages/modal.category"
 let creds = require("../../../../credentials/creds")
 
 export default class olxWriter {
@@ -32,13 +33,6 @@ export default class olxWriter {
                 case "1":
                     await this.updateItem(item)
             }
-            // on home click 'moj olx'
-        // switch:
-        // case1 item[p_olx] == 1
-        // case2 item[p_olx] == 0
-        // case1: updateItem(item)
-        // case2: addNewItem(item)
-
         }
     }
 
@@ -56,13 +50,15 @@ export default class olxWriter {
     }
 
     async addNewItem(item) {
-        if (item["p_olx"] != 0) {throw new Error(('according to gsheet item presence'+item['name']+ "is not false"))}
+        if (item["p_olx"] != 0) {throw new Error(('according to gsheet item '+item['name']+ "is already added to this shop"))}
         await this.page.goto("https://www.olx.pl/nowe-ogloszenie/")
         const newOffer = new NewOffer(this.page)
+        const category = new Category(this.page)
         await newOffer.fillInputTitle(item["title"])
-        // type item[title] into 'wpisz tytul'
-        // click 'wybierz kategorie'
-        // click 'wybierz sugerowana kategorie' nr 1
+        await newOffer.clickButtonCategory()
+        await category.clickButtonFirstCategory()
+        await newOffer.fillInputPrice(item["price"])
+        await newOffer.selectPrivateBusinessType()
         await newOffer.fillInputDescription(item["description"])
         // upload photo from item[photos]
         await newOffer.clickButtonAcceptTerms()

@@ -3,7 +3,7 @@ exports = class setup {
     constructor(url) {
         this.url = url
         this.options = options;
-        let advertisments = require('./pages/page.ogloszenia');
+        let advertisments = require('./page.ogloszenia');
         // stala nazwa obiektu (plik), rozne wersje obiektu
         // proste uzycie
         // uzytkownik tylko podaje jaki element chce uzyc, a klasa sama grupuje ten selektor na:

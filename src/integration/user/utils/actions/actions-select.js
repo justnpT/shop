@@ -1,6 +1,6 @@
 let actionsClick = require('../../tools/actions/actions-click');
 
-module.exports = {
+export default class ActionsSelect {
 
     async selectByOptionText(page, selectors, selector, optionText) {
         let elements = await page.$$(selectors);
@@ -14,18 +14,18 @@ module.exports = {
             }
         }
         throw Error('option '+ optionText + ' not found among selectors: '+selectors)
-    },
+    }
 
     async selectByTextFromDropdown(page, dropdownSelector, selectors, selector, optionText) {
         await actionsClick.clickAfter_expAnim(page, dropdownSelector);
         let sel = await this.selectByOptionText(page, selectors, selector, optionText);
         await page.waitForSelector(sel, {hidden: true});
-    },
+    }
 
     async selectBySelector(page, field_selector, option_selector) {
         await actionsClick.clickAfter_expAnim(page, field_selector)
         await actionsClick.clickAfter_expAnim_thenAwaitHidden(page, option_selector)
-    },
+    }
 
     async getListOfCurrentOptions(page, selector_of_many, selector_of_one) {
         let elements = await page.$$(selector_of_many)
@@ -38,7 +38,7 @@ module.exports = {
             list.push(noSpacesText)
         }
         return list
-    },
+    }
 
     async selectPhonePrefixOnMobile(page, select_selector, phonePrefix) {
         let elements = await page.$$(select_selector+ ' option');
@@ -54,6 +54,6 @@ module.exports = {
             }
         }
         throw Error('option '+ phonePrefix + ' not found among selectors: '+select_selector)
-    },
+    }
 
 }
