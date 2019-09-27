@@ -31,7 +31,7 @@ class sheetReader {
     }
 
     async updateFreshItemListMock() {
-        this.freshItemList = require("./mock1")
+        this.freshItemList = require("./mock3")
         this.eventEmitter.emit('test', this.freshItemList)
     }
 

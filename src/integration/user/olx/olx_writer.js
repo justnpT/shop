@@ -14,9 +14,7 @@ export default class olxWriter {
     }
 
     async write(itemList) {
-        if (itemList.length==0) {
-            throw new Error("no items in itemList");
-        }
+        if (itemList.length==0) {throw new Error("no items in itemList");}
 
         this.page  = await this.setup.start();
         const login = new Login(this.page)
@@ -25,14 +23,16 @@ export default class olxWriter {
         await login.performLogin(this.olxCreds.password, this.olxCreds.email)
 
         for (let item of itemList) {
-            if (item['update'] != 1) {throw new Error(('no decision to update '+item['name']))}
-            if (item['u_olx'] != 1) {throw new Error(('no decision to update the olx shop with '+item['name']))}
+            if (item['update'] != 1) {console.warn(('update: no update decision for '+item['name'])); continue}
+            if (item['u_olx'] != 1) {console.warn(('u_olx: no update olx decision for '+item['name'])); continue}
 
             switch (item["p_olx"]) {
                 case "0":
                     await this.addNewItem(item)
                 case "1":
                     await this.updateItem(item)
+                default:
+                    console.error('p_olx: no information whether item present: '+item['name'])
             }
         }
     }
@@ -52,6 +52,7 @@ export default class olxWriter {
 
     async addNewItem(item) {
         if (item["p_olx"] != 0) {throw new Error(('according to gsheet item '+item['name']+ "is already added to this shop"))}
+        let photoes = this.getPhotoes(item["name"])
         await this.page.goto("https://www.olx.pl/nowe-ogloszenie/")
         const newOffer = new NewOffer(this.page)
         const category = new Category(this.page)
@@ -62,9 +63,15 @@ export default class olxWriter {
         await newOffer.selectPrivateBusinessType()
         await newOffer.fillInputDescription(item["description"])
         await newOffer.clickButtonSimplePhotoUpload()
-        await newOffer.uploadPhoto(1, this.photoesPath)
+        await newOffer.uploadPhotoes(photoes, this.photoesPath, item["name"])
         await newOffer.clickButtonAcceptTerms()
         await newOffer.clickButtonNext()
+    }
+
+    getPhotoes(itemName) {
+        let fs = require('fs');
+        let photoFiles = fs.readdirSync(this.photoesPath+"\\"+itemName);
+        return photoFiles;
     }
 
 }

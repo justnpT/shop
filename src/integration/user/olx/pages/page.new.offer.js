@@ -28,6 +28,12 @@ export default class NewOffer {
         await actionsClick.clickAfter_expAnim(this.page, this.buttonSimplePhotoUpload)
     }
 
+    async uploadPhotoes(photoesArray, gdriveFolder, itemName) {
+        for (let i = 1; i <= photoesArray.length; i++) {
+            await this.uploadPhoto(i, gdriveFolder+"\\"+itemName+"\\"+photoesArray[i-1])
+        }
+    }
+
     async uploadPhoto(photoNumber, photoPath) {
         let sel = this.photoInput.replace("$INDEX$", photoNumber)
         await movement.waitForMovementToFinishAfterExp(this.page, sel)
@@ -36,6 +42,7 @@ export default class NewOffer {
     }
 
     async selectPrivateBusinessType() {
+        //TODO: scroll to this.dropdownBusinessType before click
         await actionsSelect.selectBySelector(this.page, this.dropdownBusinessType, this.businessTypePrivate)
     }
 
