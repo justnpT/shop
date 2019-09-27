@@ -12,7 +12,6 @@ async function fun() {
     await olx.write(spreadsheet.freshItemList)
 }
 
-
 (async() => {
     finishedUpdate.on('test', fun)
     // await spreadsheet.updateFreshItemList();
