@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="050b48e7-8470-4e55-a6b0-ac43798d5548" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/integration/user/olx/photo1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credentials/credentials-template.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/olx_writer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/olx_writer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integration/user/olx/pages/page.new.offer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/olx/pages/page.new.offer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integration/user/utils/actions/actions-click.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/utils/actions/actions-click.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integration/user/utils/actions/actions-fill.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/utils/actions/actions-fill.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integration/user/utils/actions/actions-select.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/utils/actions/actions-select.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integration/user/utils/monitoring/movement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/integration/user/utils/monitoring/movement.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,36 +32,6 @@
         <option value="package.json" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>middleImplicitWaitForElements</find>
-      <find>middleImplicitWait</find>
-      <find>m</find>
-      <find>globalTimeout</find>
-      <find>'</find>
-      <find>options</find>
-      <find>options.maximumImplicitWaitTimeout</find>
-      <find>maxImplicitWait</find>
-      <find>,</find>
-      <find>animat</find>
-      <find>animation</find>
-      <find>text</find>
-      <find>clickButtonLogin</find>
-      <find>function</find>
-      <find>worked</find>
-      <find>type</find>
-      <find>action</find>
-      <find>},</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>options.maximumImplicitWaitForElements</replace>
-      <replace>options.timeout</replace>
-      <replace>&quot;</replace>
-      <replace>options.maximumImplicitWaitTimeout</replace>
-      <replace>movement</replace>
-      <replace>}</replace>
-    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -352,6 +330,12 @@
       </map>
     </option>
   </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="60" />
     <option name="y" value="-15" />
@@ -377,7 +361,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542130969688" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/integration/user" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/credentials" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -386,20 +370,20 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\workspace\shop\credentials" />
       <recent name="C:\workspace\shop\src\integration\user\olx\pages" />
       <recent name="C:\workspace\shop\src\integration\api\google_sheet" />
       <recent name="C:\workspace\shop\src" />
       <recent name="C:\workspace\shop\src\integration\user\olx\elements\pages" />
-      <recent name="C:\workspace\shop\credentials" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\workspace\shop\src\integration\user\olx" />
       <recent name="C:\workspace\shop\credentials" />
       <recent name="C:\workspace\shop\src\integration\user\olx\pages" />
-      <recent name="C:\workspace\shop\src\integration\user\olx" />
       <recent name="C:\workspace\shop\src\integration\api\google_sheet" />
       <recent name="C:\workspace\shop\src\integration\user\olx\elements\pages" />
     </key>
@@ -476,6 +460,16 @@
         <item itemvalue="npm.runner2" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand />
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -555,6 +549,14 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/integration/user/olx/olx_writer.js</url>
+          <line>66</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="dart-exception" />
       </default-breakpoints>
@@ -567,55 +569,6 @@
         <watch expression="this.freshItemList" />
       </configuration>
     </watches-manager>
-  </component>
-  <component name="debuggerHistoryManager">
-    <expressions id="evaluateExpression">
-      <expression>
-        <expression-string>item[&quot;p_olx&quot;]</expression-string>
-        <language-id>JavaScript</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>itemList.length!=0</expression-string>
-        <language-id>JavaScript</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>[1].length!=0</expression-string>
-        <language-id>JavaScript</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>[1] || false</expression-string>
-        <language-id>JavaScript</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>[] || false</expression-string>
-        <language-id>JavaScript</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>[1] &amp;&amp; false</expression-string>
-        <language-id>JavaScript</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>[] &amp;&amp; false</expression-string>
-        <language-id>JavaScript</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>[1,2] &amp;&amp; false</expression-string>
-        <language-id>JavaScript</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>[1,2] &amp; false</expression-string>
-        <language-id>JavaScript</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
   </component>
   <component name="masterDetails">
     <states>

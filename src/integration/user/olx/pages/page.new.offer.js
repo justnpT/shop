@@ -1,6 +1,8 @@
 import ActionsClick from "../../utils/actions/actions-click"
 import ActionsType from "../../utils/actions/actions-fill"
 import ActionsSelect from "../../utils/actions/actions-select"
+import Movement from "../../utils/monitoring/movement"
+const  movement = new Movement()
 const  actionsSelect = new ActionsSelect()
 const  actionsClick = new ActionsClick()
 const  actionsType = new ActionsType()
@@ -11,23 +13,27 @@ export default class NewOffer {
         this.page = page
     }
 
-    get category() {return "tr:nth-child(1) .col:nth-child(1) a"}
-
     get inputTitle() { return "#add-title" }
-
-    get inputDescription() { return "#description textarea" }
-
-    get buttonAcceptTerms() { return "fieldset .focusbox label" }
-
+    get inputDescription() { return "#add-description" }
+    get buttonAcceptTerms() { return ".agreement-label [for=newsletter-accept]" }
     get buttonNext() { return "#save" }
-    
     get buttonCategory() { return "dl.dropdown" }
-    
     get inputPrice() { return "input.price" }
-
-    get dropdownBusinessType() { return "input.price" }
+    get dropdownBusinessType() { return "#targetid_private_business" }
     get businessTypePrivate() { return "#targetid_private_business li:nth-child(2) a" }
-    get businessTypeCompany() { return "#targetid_private_business li:nth-child(3) a" }
+    get buttonSimplePhotoUpload() { return "#show-gallery-html" }
+    get photoInput() { return "#simple_form_inputs div:nth-child($INDEX$) input.file" }
+
+    async clickButtonSimplePhotoUpload() {
+        await actionsClick.clickAfter_expAnim(this.page, this.buttonSimplePhotoUpload)
+    }
+
+    async uploadPhoto(photoNumber, photoPath) {
+        let sel = this.photoInput.replace("$INDEX$", photoNumber)
+        await movement.waitForMovementToFinishAfterExp(this.page, sel)
+        let input = await this.page.$(sel)
+        await input.uploadFile(photoPath)
+    }
 
     async selectPrivateBusinessType() {
         await actionsSelect.selectBySelector(this.page, this.dropdownBusinessType, this.businessTypePrivate)

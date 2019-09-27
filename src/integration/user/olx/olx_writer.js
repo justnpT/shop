@@ -3,13 +3,14 @@ import Login from "./pages/modal.login"
 import Home from "./pages/page.home"
 import NewOffer from "./pages/page.new.offer"
 import Category from "./pages/modal.category"
-let creds = require("../../../../credentials/creds")
+let creds = require("../../../../credentials/credentials")
 
 export default class olxWriter {
     constructor(url) {
         this.url = url
         this.setup = new Setup(this.url)
         this.olxCreds = creds.olx;
+        this.photoesPath = creds.gdrive.photoesPath;
     }
 
     async write(itemList) {
@@ -60,7 +61,8 @@ export default class olxWriter {
         await newOffer.fillInputPrice(item["price"])
         await newOffer.selectPrivateBusinessType()
         await newOffer.fillInputDescription(item["description"])
-        // upload photo from item[photos]
+        await newOffer.clickButtonSimplePhotoUpload()
+        await newOffer.uploadPhoto(1, this.photoesPath)
         await newOffer.clickButtonAcceptTerms()
         await newOffer.clickButtonNext()
     }

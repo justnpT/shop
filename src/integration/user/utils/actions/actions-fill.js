@@ -1,5 +1,6 @@
 import * as options from "../../pupp.conf";
-let movement = require('../monitoring/movement');
+import Movement from "../monitoring/movement";
+let movement = new Movement()
 
 export default class ActionsFill {
 

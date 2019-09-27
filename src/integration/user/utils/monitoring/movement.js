@@ -1,19 +1,19 @@
 import * as options from "../../pupp.conf";
 
-module.exports = {
+export default class Movement {
 
-    waitForAnimationAfterExplicitAndMaxImplicit: async function (page, selector) {
+    async waitForAnimationAfterExplicitAndMaxImplicit(page, selector) {
         await page.waitForSelector(selector);
         await page.waitFor(options.maximumImplicitWaitTimeout);
         await this.waitForMovementToFinish(page, selector);
-    },
+    }
 
-    waitForMovementToFinishAfterExp: async function (page, selector, stableFor50msMultipliedBy=6, logInfo=false) {
+    async waitForMovementToFinishAfterExp(page, selector, stableFor50msMultipliedBy=6, logInfo=false) {
         await page.waitForSelector(selector);
         await this.waitForMovementToFinish(page, selector, stableFor50msMultipliedBy, logInfo);
-    },
+    }
 
-    waitForElementToMove: async function(page, selector, timeout = options.timeout, logInfo = false) {
+    async waitForElementToMove(page, selector, timeout = options.timeout, logInfo = false) {
         await page.waitForSelector(selector, {visible: true});
         let element = await page.$(selector);
         let cachedPosition = await page.evaluate((element) => {
@@ -53,9 +53,9 @@ module.exports = {
             cachedPosition = newPosition;
             iteration++;
         }
-    },
+    }
 
-    waitForMovementToFinish: async function (page, selector, stableFor50msMultipliedBy=6, logInfo=false) {
+    async waitForMovementToFinish(page, selector, stableFor50msMultipliedBy=6, logInfo=false) {
         const element = await page.$(selector);
 
         let cachedPosition = await page.evaluate((header) => {
@@ -98,9 +98,9 @@ module.exports = {
             cachedPosition = newPosition;
             iteration++;
         }
-    },
+    }
 
-    compareRects: async function (rect1, rect2) {
+    async compareRects(rect1, rect2) {
         if (
             (rect1.bottom == rect2.bottom) &
             (rect1.left == rect2.left) &

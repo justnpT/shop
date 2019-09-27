@@ -1,4 +1,5 @@
-let actionsClick = require('../../tools/actions/actions-click');
+import ActionsClick from "./actions-click";
+let actionsClick = new ActionsClick()
 
 export default class ActionsSelect {
 
