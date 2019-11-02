@@ -4,18 +4,17 @@ import config from './integration/user/olx/config'
 
 const EventEmitter = require('events').EventEmitter;
 const finishedUpdate = new EventEmitter;
+const events = new EmitedEvents();
 
 let spreadsheet = new sheetReader('1R0pNdZ3JhVjYbfsT9z7EEkqlfwqsVgBEUfjQIf6gtV4', finishedUpdate);
 let olx = new olxWriter(config.baseUrl);
 
-async function fun() {
+async function writeFreshItemList() {
     await olx.write(spreadsheet.freshItemList)
 }
 
 (async() => {
-    finishedUpdate.on('test', fun)
-    // await spreadsheet.updateFreshItemList();
-    await spreadsheet.updateFreshItemListMock();
-    // await sheet.setAuth();
-    // await sheet.getInfoAndWorksheets();
+    finishedUpdate.on(events.itemListUpdated, writeFreshItemList)
+    await spreadsheet.updateFreshItemList();
+    // await spreadsheet.updateFreshItemListMock();
 })();

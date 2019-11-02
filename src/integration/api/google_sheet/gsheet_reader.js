@@ -1,5 +1,6 @@
 var GoogleSpreadsheet = require('google-spreadsheet')
 var async = require('async');
+const events = new EmitedEvents();
 
 class sheetReader {
     constructor(spreadsheet_key, eventEmitter) {
@@ -32,7 +33,7 @@ class sheetReader {
 
     async updateFreshItemListMock() {
         this.freshItemList = require("./mock3")
-        this.eventEmitter.emit('test', this.freshItemList)
+        this.eventEmitter.emit(events.itemListUpdated, this.freshItemList)
     }
 
     async updateFreshItemList() {
@@ -79,8 +80,7 @@ class sheetReader {
                             }
                         }
                     }
-                    console.log(this.freshItemList[15]['price'])
-                    this.eventEmitter.emit('test', this.freshItemList)
+                    this.eventEmitter.emit(events.itemListUpdated, this.freshItemList)
                     step();
                 }.bind(this));
             }.bind(this),

@@ -4,6 +4,7 @@ import Home from "./pages/page.home"
 import NewOffer from "./pages/page.new.offer"
 import Category from "./pages/modal.category"
 let creds = require("../../../../credentials/credentials")
+const itemKeys = new ItemKeys()
 
 export default class olxWriter {
     constructor(url) {
@@ -23,24 +24,18 @@ export default class olxWriter {
         await login.performLogin(this.olxCreds.password, this.olxCreds.email)
 
         for (let item of itemList) {
-            if (item['update'] != 1) {console.warn(('update: no update decision for '+item['name'])); continue}
-            if (item['u_olx'] != 1) {console.warn(('u_olx: no update olx decision for '+item['name'])); continue}
+            if (item[itemKeys.update] != 1) {console.warn(('No update decision for '+itemKeys.name)); continue}
+            if (item[itemKeys.u_olx] != 1) {console.warn(('No update olx decision for '+itemKeys.name)); continue}
 
-            switch (item["p_olx"]) {
+            switch (item[itemKeys.active_olx]) {
                 case "0":
                     await this.addNewItem(item)
                 case "1":
                     await this.updateItem(item)
                 default:
-                    console.error('p_olx: no information whether item present: '+item['name'])
+                    console.error('No information whether item present: '+item[itemKeys.name])
             }
         }
-    }
-
-    async hello(itemList) {
-        console.log('witam' + itemList)
-        console.log(this.toString())
-        await this.write(itemList)
     }
 
     async updateItem(item) {
@@ -51,19 +46,19 @@ export default class olxWriter {
     }
 
     async addNewItem(item) {
-        if (item["p_olx"] != 0) {throw new Error(('according to gsheet item '+item['name']+ "is already added to this shop"))}
-        let photoes = this.getPhotoes(item["name"])
+        if (item[itemKeys.active_olx] != 0) {throw new Error(('according to gsheet item '+item[itemKeys.name]+ "is already added to this shop"))}
+        let photoes = this.getPhotoes(item[itemKeys.name])
         await this.page.goto("https://www.olx.pl/nowe-ogloszenie/")
         const newOffer = new NewOffer(this.page)
         const category = new Category(this.page)
-        await newOffer.fillInputTitle(item["title"])
+        await newOffer.fillInputTitle(item[itemKeys.title])
         await newOffer.clickButtonCategory()
         await category.clickButtonFirstCategory()
-        await newOffer.fillInputPrice(item["price"])
+        await newOffer.fillInputPrice(item[itemKeys.price])
         await newOffer.selectPrivateBusinessType()
-        await newOffer.fillInputDescription(item["description"])
+        await newOffer.fillInputDescription(item[itemKeys.description])
         await newOffer.clickButtonSimplePhotoUpload()
-        await newOffer.uploadPhotoes(photoes, this.photoesPath, item["name"])
+        await newOffer.uploadPhotoes(photoes, this.photoesPath, item[itemKeys.name])
         await newOffer.clickButtonAcceptTerms()
         await newOffer.clickButtonNext()
     }

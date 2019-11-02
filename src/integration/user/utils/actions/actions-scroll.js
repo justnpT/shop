@@ -1,9 +1,6 @@
-let maxImplicitWait = require('../../config/config-global').static.maximumImplicitWaitTimeout;
-let animation = require('../monitoring/animation/animation');
+export default class ActionsSelect {
 
-module.exports = {
-
-    autoScrollDown: async function (page) {
+    async autoScrollDown (page) {
         await page.evaluate(async () => {
             await new Promise((resolve, reject) => {
                 let totalHeight = 0
@@ -19,7 +16,7 @@ module.exports = {
                 }, 100)
             })
         })
-    },
+    }
 
     async scrollTo(page, selector) {
         let elem = await page.waitForSelector(selector, {visible: true});
