@@ -48,6 +48,10 @@ export default class NewOffer {
         await actionsSelect.selectBySelector(this.page, this.dropdownBusinessType, this.businessTypePrivate)
     }
 
+    async selectRelevantOptions() {
+    //TODO: do a switch that iterates over all select elements sel="fieldset select", then based on ID of that elem performs action. param13 or id_private_business <- different actions
+    }
+
     async fillInputPrice(price) {
         await actionsType.typeAfter_expAnim(this.page, this.inputPrice, price)
     }
