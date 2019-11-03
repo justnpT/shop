@@ -1,13 +1,14 @@
 var GoogleSpreadsheet = require('google-spreadsheet')
 var async = require('async');
-const events = new EmitedEvents();
+import EmitedEvents from "./../../../tasks_manager/businessEnums"
+const events = new EmitedEvents()
 
-class sheetReader {
+export default class sheetReader {
     constructor(spreadsheet_key, eventEmitter) {
         this.doc = new GoogleSpreadsheet(spreadsheet_key);
         this.creds = require('./creds/shop-250916-e18ae184fd04.json');
-        this.first_col = 1;
-        this.last_col = 17;
+        this.first_col = 1; // A
+        this.last_col = 20; // S
         this.captionRow = 4;
         this.freshItemList = [];
         this.eventEmitter = eventEmitter;
@@ -32,7 +33,7 @@ class sheetReader {
     }
 
     async updateFreshItemListMock() {
-        this.freshItemList = require("./mock3")
+        this.freshItemList = require("./mocks/mock4")
         this.eventEmitter.emit(events.itemListUpdated, this.freshItemList)
     }
 

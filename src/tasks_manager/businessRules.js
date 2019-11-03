@@ -1,11 +1,12 @@
+import ItemKeys from "./businessEnums"
 const itemKeys = new ItemKeys()
 
-class BusinessRules {
+export default class BusinessRules {
 
     renewItemOnOlx(item) {
         let today = new Date();
         //TODO compare two dates https://stackoverflow.com/questions/492994/compare-two-dates-with-javascript
-        if (item[itemKeys.expiration_date] >= today) {return true}
+        if (item[itemKeys.olx_expiration_date] >= today) {return true}
         else {console.log(('Item has not expired yet'+itemKeys.name)); return false}
     }
 

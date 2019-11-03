@@ -3,6 +3,8 @@ import Login from "./pages/modal.login"
 import Home from "./pages/page.home"
 import NewOffer from "./pages/page.new.offer"
 import Category from "./pages/modal.category"
+import BusinessRules from "./../../../tasks_manager/businessRules"
+import ItemKeys from "./../../../tasks_manager/businessEnums"
 let creds = require("../../../../credentials/credentials")
 const itemKeys = new ItemKeys()
 const businessRules = new BusinessRules()
@@ -30,6 +32,9 @@ export default class olxWriter {
             if (businessRules.renewItemOnOlx(item)) {await this.renewItem(item)}
             if (businessRules.updateItemToOlx(item)) {await this.updateItem(item)}
         }
+
+        await this.setup.stop()
+
     }
 
     async renewItem(item) {
