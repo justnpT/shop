@@ -1,7 +1,7 @@
 var GoogleSpreadsheet = require('google-spreadsheet')
 var async = require('async');
-import EmitedEvents from "./../../../tasks_manager/businessEnums"
-const events = new EmitedEvents()
+import BusinessEnums from "./../../../tasks_manager/businessEnums"
+const events = new BusinessEnums().emitedEvents
 
 export default class sheetReader {
     constructor(spreadsheet_key, eventEmitter) {

@@ -1,32 +1,31 @@
-export default class EmitedEvents {
+export default class BusinessEnums {
 
     constructor() {
-        this.itemListUpdated = "itemListUpdated"
-    }
+        this.emitedEvents = {
+            itemListUpdated: "itemListUpdated"
+        }
 
-}
-
-export class ItemKeys {
-
-    constructor() {
-        this.name = "name"
-        this.title = "title"
-        this.description = "description"
-        this.photoes = "photos"
-        this.category = "category"
-        this.price = "price"
-        this.olx_update = "update_olx"
-        this.allegro_update = "update_allegro"
-        this.facebook_update = "update_facebook"
-        this.sold = "sold"
-        this.olx_active = "active_olx"
-        this.allegro_active = "active_allegro"
-        this.facebook_active = "active_facebook"
-        this.original_gross_price = "original_gross_price"
-        this.original_net_price = "original_net_price"
-        this.olx_edit_link = "olx_edit_link"
-        this.olx_expiration_date = "olx_expiration_date"
-        this.olx_start_date = "olx_start_date"
+        this.itemKeys = {
+            name: "name",
+            title: "title",
+            description: "description",
+            photoes: "photos",
+            category: "category",
+            price: "price",
+            olx_update: "update_olx",
+            allegro_update: "update_allegro",
+            facebook_update: "update_facebook",
+            sold: "sold",
+            olx_active: "active_olx",
+            allegro_active: "active_allegro",
+            facebook_active: "active_facebook",
+            original_gross_price: "original_gross_price",
+            original_net_price: "original_net_price",
+            olx_info_link: "edit_link_olx",
+            olx_edit_link: "edit_link_olx",
+            olx_expiration_date: "expiration_date_olx",
+            olx_start_date: "start_date_olx",
+        }
     }
 
 }

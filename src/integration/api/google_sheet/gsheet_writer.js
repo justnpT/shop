@@ -1,6 +1,6 @@
 var GoogleSpreadsheet = require('google-spreadsheet')
 var async = require('async');
-const events = new EmitedEvents();
+const events = new BusinessEnums();
 
 class sheetReader {
     constructor(spreadsheet_key, eventEmitter) {
