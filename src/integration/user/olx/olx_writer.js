@@ -5,6 +5,7 @@ import NewOffer from "./pages/page.new.offer"
 import Category from "./pages/modal.category"
 let creds = require("../../../../credentials/credentials")
 const itemKeys = new ItemKeys()
+const businessRules = new BusinessRules()
 
 export default class olxWriter {
     constructor(url) {
@@ -24,29 +25,23 @@ export default class olxWriter {
         await login.performLogin(this.olxCreds.password, this.olxCreds.email)
 
         for (let item of itemList) {
-            if (item[itemKeys.update] != 1) {console.warn(('No update decision for '+itemKeys.name)); continue}
-            if (item[itemKeys.u_olx] != 1) {console.warn(('No update olx decision for '+itemKeys.name)); continue}
 
-            switch (item[itemKeys.active_olx]) {
-                case "0":
-                    await this.addNewItem(item)
-                case "1":
-                    await this.updateItem(item)
-                default:
-                    console.error('No information whether item present: '+item[itemKeys.name])
-            }
+            if (businessRules.addItemToOlx(item)) {await this.addNewItem(item)}
+            if (businessRules.renewItemOnOlx(item)) {await this.renewItem(item)}
+            if (businessRules.updateItemToOlx(item)) {await this.updateItem(item)}
         }
     }
 
+    async renewItem(item) {
+        await this.page.goto(item[itemKeys.olx_edit_link])
+
+    }
+
     async updateItem(item) {
-        // item[p_olx] == 1 | error otherwise
-        // navigate to 'ogłoszenie' edition url
-        // update fields
-        // communicate update to gsheet for change item[u_olx] = 0
+        // compare fields values to new ones and
     }
 
     async addNewItem(item) {
-        if (item[itemKeys.active_olx] != 0) {throw new Error(('according to gsheet item '+item[itemKeys.name]+ "is already added to this shop"))}
         let photoes = this.getPhotoes(item[itemKeys.name])
         await this.page.goto("https://www.olx.pl/nowe-ogloszenie/")
         const newOffer = new NewOffer(this.page)
@@ -61,6 +56,7 @@ export default class olxWriter {
         await newOffer.uploadPhotoes(photoes, this.photoesPath, item[itemKeys.name])
         await newOffer.clickButtonAcceptTerms()
         await newOffer.clickButtonNext()
+        //TODO: implement writing to gsheet fields after adding: olx_active=1, olx_expiration_date=, olx_edit_link=, update_olx=0
     }
 
     getPhotoes(itemName) {
