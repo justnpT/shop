@@ -33,7 +33,7 @@ export default class sheetReader {
     }
 
     async updateFreshItemListMock() {
-        this.freshItemList = require("./mocks/mock4")
+        this.freshItemList = require("./mocks/mock5")
         this.eventEmitter.emit(events.itemListUpdated, this.freshItemList)
     }
 

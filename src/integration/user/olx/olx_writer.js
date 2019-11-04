@@ -14,7 +14,6 @@ const businessRules = new BusinessRules()
 export default class olxManager {
     constructor(itemList) {
         this.itemList = itemList
-        this.setup = new Setup(config.baseUrl)
         this.olxCreds = creds.olx;
         this.photoesPath = creds.gdrive.photoesPath;
     }
@@ -22,6 +21,7 @@ export default class olxManager {
     async start() {
         if (this.page) {return false}
         else {
+            this.setup = new Setup(config.baseUrl)
             this.page  = await this.setup.start();
             const login = new Login(this.page)
             const home = new Home(this.page)
@@ -30,40 +30,50 @@ export default class olxManager {
         }
     }
 
+    async stop() {
+        if (this.page) {await this.setup.stop()}
+    }
+
     async manageOlx() {
         if (!this.itemList) {throw new Error("no items in itemList");}
 
         for (let item of this.itemList) {
 
-            if (businessRules.addItemToOlx(item)) {await this.start(); await this.addNewItem(item)}
-            if (businessRules.renewItemOnOlx(item)) {await this.start(); await this.renewItem(item)}
-            if (businessRules.updateItemToOlx(item)) {await this.start(); await this.updateItem(item)}
+            if (businessRules.addItemToOlx(item)) {await this.addNewItem(item)}
+            if (businessRules.renewItemOnOlx(item)) {await this.renewItem(item)}
+            if (businessRules.updateItemToOlx(item)) {await this.updateItem(item)}
         }
 
-        await this.setup.stop()
+        await this.stop()
         // TODO: connect to gsheet writer and write all {changed: newValue} fields from current this.itemList
 
     }
 
     async renewItem(item) {
-        await this.page.goto(item[itemKeys.olx_edit_link])
-        const newOffer = new NewOffer(this.page)
-        await newOffer.clickButtonAcceptTerms()
-        await newOffer.clickButtonNext()
-        const confirmPage = new AssertionConfirmPage(this.page)
-        let link = await confirmPage.getInfoLinkText()
-        // TODO: save that link to gsheet into olx_info_link of this item
+        // await this.start();
+        // await this.page.goto(config.archive)
+        //TODO: wyszukac item na liscie zakonczonych ogloszen i aktywowac
+        let link = "https://www.olx.pl/oferta/niezwykla-wiertarka-wahadlowa-CID628-IDBMP9S.html"
+        // TODO: think about mechanizm to save this and then update gsheet 
         // TODO: new value for link field: {changed: newValue}
     }
 
     async updateItem(item) {
-        // TODO: for considered item, compare what is to what comes from gsheet, and add new values on olx and save
+        // await this.start();
+        // await this.page.goto(item[itemKeys.olx_edit_link])
+        // const newOffer = new NewOffer(this.page)
+        // await newOffer.clickButtonAcceptTerms()
+        // await newOffer.clickButtonNext()
+        // const confirmPage = new AssertionConfirmPage(this.page)
+        // go to itemEditLink, check name, title, description, photoes
+        // TODO: for considered item, compare what is on olx page to what comes from gsheet, and add new values on olx and save
         // TODO: no need to save this to freshItemList in the end
     }
 
     async addNewItem(item) {
+        await this.start();
         let photoes = this.getPhotoes(item[itemKeys.name])
-        await this.page.goto("https://www.olx.pl/nowe-ogloszenie/")
+        await this.page.goto(config.newOffer)
         const newOffer = new NewOffer(this.page)
         const category = new Category(this.page)
         await newOffer.fillInputTitle(item[itemKeys.title])
