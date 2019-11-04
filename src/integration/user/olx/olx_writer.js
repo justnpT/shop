@@ -10,10 +10,13 @@ import AssertionConfirmPage from "./pages/new.offer.confirmpage.assertion";
 let creds = require("../../../../credentials/credentials")
 const itemKeys = new BusinessEnums().itemKeys
 const businessRules = new BusinessRules()
+const events = new BusinessEnums().emitedEvents
 
 export default class olxManager {
-    constructor(itemList) {
+    constructor(eventEmitter) {
+        this.eventEmitter = eventEmitter;
         this.itemList = itemList
+        this.changeArray = []
         this.olxCreds = creds.olx;
         this.photoesPath = creds.gdrive.photoesPath;
     }
@@ -34,8 +37,9 @@ export default class olxManager {
         if (this.page) {await this.setup.stop()}
     }
 
-    async manageOlx() {
-        if (!this.itemList) {throw new Error("no items in itemList");}
+    async manageOlx(itemList) {
+        if (!itemList) {throw new Error("no items in itemList");}
+        this.itemList = itemList
 
         for (let item of this.itemList) {
 
@@ -54,8 +58,8 @@ export default class olxManager {
         // await this.page.goto(config.archive)
         //TODO: wyszukac item na liscie zakonczonych ogloszen i aktywowac
         let link = "https://www.olx.pl/oferta/niezwykla-wiertarka-wahadlowa-CID628-IDBMP9S.html"
-        // TODO: think about mechanizm to save this and then update gsheet 
-        // TODO: new value for link field: {changed: newValue}
+        this.changeArray.push({name: item[itemKeys.name], field: item[itemKeys.olx_info_link], new_value: link})
+        this.eventEmitter.emit(events.changeArrayReady, this.changeArray)
     }
 
     async updateItem(item) {

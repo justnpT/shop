@@ -2,18 +2,22 @@ import sheetReader from './integration/api/google_sheet/gsheet_reader.js'
 import olxManager from './integration/user/olx/olx_writer.js'
 import BusinessEnums from "./tasks_manager/businessEnums"
 const EventEmitter = require('events').EventEmitter;
-const finishedUpdate = new EventEmitter;
+const eventEmitter = new EventEmitter;
 const events = new BusinessEnums().emitedEvents;
 
-let spreadsheet = new sheetReader('1R0pNdZ3JhVjYbfsT9z7EEkqlfwqsVgBEUfjQIf6gtV4', finishedUpdate);
+let spreadsheet = new sheetReader('1R0pNdZ3JhVjYbfsT9z7EEkqlfwqsVgBEUfjQIf6gtV4', eventEmitter);
+let olx = new olxManager(eventEmitter);
 
 async function writeFreshItemList() {
-    let olx = new olxManager(spreadsheet.freshItemList);
-    await olx.manageOlx()
+    await olx.manageOlx(spreadsheet.freshItemList)
+}
+
+async function updateItemList() {
+    await spreadsheet.updateItemList()
 }
 
 (async() => {
-    finishedUpdate.on(events.itemListUpdated, writeFreshItemList)
-    // await spreadsheet.updateFreshItemList();
-    await spreadsheet.updateFreshItemListMock();
+    eventEmitter.on(events.itemListUpdated, writeFreshItemList)
+    await spreadsheet.readFreshItemList();
+    // await spreadsheet.readFreshItemListMock();
 })();

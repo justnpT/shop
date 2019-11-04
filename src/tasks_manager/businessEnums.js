@@ -2,7 +2,8 @@ export default class BusinessEnums {
 
     constructor() {
         this.emitedEvents = {
-            itemListUpdated: "itemListUpdated"
+            itemListUpdated: "itemListUpdated",
+            changeArrayReady: "changeArrayReady"
         }
 
         this.itemKeys = {
