@@ -90,6 +90,7 @@ export default class sheetReader {
 
     setItemList(err, cells) {
         //TODO: implemnet this so that everything happens right based on changeArray for every of its elements
+        //https://www.npmjs.com/package/google-spreadsheet
         let captionList = []
 
         let last_row = cells[cells.length - 1]['row']
