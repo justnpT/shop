@@ -15,7 +15,7 @@ export default class sheetReader {
     }
 
     async readFreshItemListMock() {
-        this.freshItemList = require("./mocks/mock5")
+        this.freshItemList = require("./mocks/mock6")
         this.eventEmitter.emit(events.itemListUpdated, this.freshItemList)
     }
 
@@ -85,37 +85,35 @@ export default class sheetReader {
             }
         }
         this.eventEmitter.emit(events.itemListUpdated, this.freshItemList)
-        step();
+        // step();
     }
 
     setItemList(err, cells) {
         //TODO: implemnet this so that everything happens right based on changeArray for every of its elements
         //https://www.npmjs.com/package/google-spreadsheet
-        let captionList = []
-
-        let last_row = cells[cells.length - 1]['row']
         let captionCells = cells.filter((value) => value['row'] == this.captionRow)
+        let changedCellCol = captionCells.filter((value) => value['_value'] == this.changeArray[0].field)
+        let desiredCol = changedCellCol[0].col
+        let desiredRow = 0
+        let desiredIndex = 0
 
-        captionCells.forEach((elem) => captionList.push(elem['_value']))
+        function getDesiredRow(cell) {if ((cell.col == 1) && (cell._value = this.changeArray[0].field)) {
+            desiredRow = cell.row
+        }}
+        function getDesiredIndex(cell, index) {if ((cell.col == desiredCol) && (cell.row == desiredRow)) {
+            desiredIndex = index
+        }}
+        cells.forEach(getDesiredRow.bind(this))
+        cells.forEach(getDesiredIndex)
+        console.log(desiredIndex)
+        let desiredCell = cells[desiredIndex]
+        desiredCell.value = this.changeArray[0].new_value;
+        desiredCell.save();
+        // TODO bulkUpdateCells updates this for me
+        // this.sheet.bulkUpdateCells(cells);
 
-        for (let currentRow = this.captionRow + 1; currentRow <= last_row; currentRow++) {
-
-            let analyzedRow = cells.filter((value) => value['row'] == currentRow)
-            this.freshItemList.push({})
-            for (let captionIndex = 0; captionIndex < captionList.length; captionIndex++) {
-                let cell = analyzedRow.filter((value => value['col'] == captionIndex + 1))
-                if (cell[0]) {
-                    let evaluatedItem = this.freshItemList.pop()
-                    if (!cell[0]) {
-                        console.log(cell[0])
-                    }
-                    evaluatedItem[captionList[captionIndex]] = cell[0]['_value']
-                    this.freshItemList.push(evaluatedItem)
-                }
-            }
-        }
-        this.eventEmitter.emit(events.itemListUpdated, this.freshItemList)
-        step();
+        // this.eventEmitter.emit(events.itemListUpdated, this.freshItemList)
+        // step();
     }
 
 }

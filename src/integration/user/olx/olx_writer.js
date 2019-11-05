@@ -15,7 +15,6 @@ const events = new BusinessEnums().emitedEvents
 export default class olxManager {
     constructor(eventEmitter) {
         this.eventEmitter = eventEmitter;
-        this.itemList = itemList
         this.changeArray = []
         this.olxCreds = creds.olx;
         this.photoesPath = creds.gdrive.photoesPath;
@@ -58,7 +57,7 @@ export default class olxManager {
         // await this.page.goto(config.archive)
         //TODO: wyszukac item na liscie zakonczonych ogloszen i aktywowac
         let link = "https://www.olx.pl/oferta/niezwykla-wiertarka-wahadlowa-CID628-IDBMP9S.html"
-        this.changeArray.push({name: item[itemKeys.name], field: item[itemKeys.olx_info_link], new_value: link})
+        this.changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_info_link, new_value: link})
         this.eventEmitter.emit(events.changeArrayReady, this.changeArray)
     }
 
