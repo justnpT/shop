@@ -4,12 +4,13 @@ import Login from "./pages/modal.login"
 import Home from "./pages/home.page"
 import NewOffer from "./pages/new.offer.page"
 import Category from "./pages/modal.category"
-import BusinessRules from "./../../../tasks_manager/businessRules"
+import OlxBusinessRules from "../../../tasks_manager/olxBusinessRules"
 import BusinessEnums from "./../../../tasks_manager/businessEnums"
 import AssertionConfirmPage from "./pages/new.offer.confirmpage.assertion";
+import ArchivePage from "./pages/archive/archive.page";
 let creds = require("../../../../credentials/credentials")
 const itemKeys = new BusinessEnums().itemKeys
-const businessRules = new BusinessRules()
+const olxBusinessRules = new OlxBusinessRules()
 const events = new BusinessEnums().emitedEvents
 
 export default class olxManager {
@@ -18,6 +19,9 @@ export default class olxManager {
         this.changeArray = []
         this.olxCreds = creds.olx;
         this.photoesPath = creds.gdrive.photoesPath;
+        this.today = new Date();
+        this.itemExpirationDate = new Date(this.today)
+        this.itemExpirationDate.setDate(this.itemExpirationDate.getDate() + 30)
     }
 
     async start() {
@@ -42,23 +46,26 @@ export default class olxManager {
 
         for (let item of this.itemList) {
 
-            if (businessRules.addItemToOlx(item)) {await this.addNewItem(item)}
-            if (businessRules.renewItemOnOlx(item)) {await this.renewItem(item)}
-            if (businessRules.updateItemToOlx(item)) {await this.updateItem(item)}
+            if (olxBusinessRules.addItem(item)) {await this.addNewItem(item)}
+            if (olxBusinessRules.renewItem(item)) {await this.renewItem(item)}
+            if (olxBusinessRules.updateItem(item)) {await this.updateItem(item)}
         }
 
         await this.stop()
+        this.eventEmitter.emit(events.changeArrayReady, this.changeArray)
         // TODO: connect to gsheet writer and write all {changed: newValue} fields from current this.itemList
+        // TODO: so make sure all desired updates are on changeArray and do: this.eventEmitter.emit(events.changeArrayReady, this.changeArray)
 
     }
 
     async renewItem(item) {
         await this.start();
         await this.page.goto(config.archive)
-        //TODO: wyszukac item na liscie zakonczonych ogloszen i aktywowac
-        let link = "https://www.olx.pl/oferta/niezwykla-wiertarka-wahadlowa-CID628-IDBMP9S.html"
-        this.changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_info_link, new_value: link})
-        this.eventEmitter.emit(events.changeArrayReady, this.changeArray)
+        const archivePage = new ArchivePage(this.page)
+        await archivePage.clickButtonActivate(item[itemKeys.title])
+        // TODO: add assertion for link reactivation
+        this.changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_active, new_value: 1})
+        this.changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_expiration_date, new_value: this.itemExpirationDate})
     }
 
     async updateItem(item) {
@@ -69,6 +76,7 @@ export default class olxManager {
         // await newOffer.clickButtonNext()
         // const confirmPage = new AssertionConfirmPage(this.page)
         // go to itemEditLink, check name, title, description, photoes
+        // update photoes only if the field value = 1
         // TODO: for considered item, compare what is on olx page to what comes from gsheet, and add new values on olx and save
         // TODO: no need to save this to freshItemList in the end
     }
@@ -79,17 +87,23 @@ export default class olxManager {
         await this.page.goto(config.newOffer)
         const newOffer = new NewOffer(this.page)
         const category = new Category(this.page)
-        await newOffer.fillInputTitle(item[itemKeys.title])
         await newOffer.clickButtonCategory()
-        await category.clickButtonFirstCategory()
+        await newOffer.fillInputTitle(item[itemKeys.title])
+        // await newOffer.clickButtonCategory()
+        // await category.clickButtonFirstCategory()
         await newOffer.fillInputPrice(item[itemKeys.price])
         await newOffer.fillInputDescription(item[itemKeys.description])
         await newOffer.selectPrivateBusinessType()
         await newOffer.clickButtonSimplePhotoUpload()
         await newOffer.uploadPhotoes(photoes, this.photoesPath, item[itemKeys.name])
         await newOffer.clickButtonAcceptTerms()
-        await newOffer.clickButtonNext()
-        //TODO: for considered item, implement updating this.itemList with fields: olx_active=1, olx_expiration_date=, olx_edit_link=, update_olx=0
+        let promote = await newOffer.clickButtonNext()
+        await promote.clickButtonAddWithoutPromotion()
+        let editLink = 'i should get it from olx'
+        this.changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_active, new_value: 1})
+        this.changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_update, new_value: "0"})
+        this.changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_expiration_date, new_value: this.itemExpirationDate})
+        this.changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_edit_link, new_value: editLink})
     }
 
     getPhotoes(itemName) {

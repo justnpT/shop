@@ -1,4 +1,6 @@
 import BasePage from "./base.page";
+import Category from "./modal.category";
+import Promote from "./promote/promote.page";
 
 export default class NewOffer extends BasePage {
 
@@ -14,6 +16,7 @@ export default class NewOffer extends BasePage {
     get photoInput() { return "#simple_form_inputs div:nth-child($INDEX$) input.file" }
 
     async clickButtonSimplePhotoUpload() {
+        await this.baseScrollTo(this.buttonSimplePhotoUpload)
         await this.baseClickButton(this.buttonSimplePhotoUpload)
     }
 
@@ -24,10 +27,7 @@ export default class NewOffer extends BasePage {
     }
 
     async uploadPhoto(photoNumber, photoPath) {
-        let sel = this.photoInput.replace("$INDEX$", photoNumber)
-        await this.baseWaitForMovementToFinish(sel)
-        let input = await this.page.$(sel)
-        await input.uploadFile(photoPath)
+        await this.baseUploadFile(this.photoInput.replace("$INDEX$", photoNumber), photoPath)
     }
 
     async selectPrivateBusinessType() {
@@ -45,10 +45,20 @@ export default class NewOffer extends BasePage {
     
     async clickButtonCategory() {
         await this.baseClickButton(this.buttonCategory)
+        return new Category(this.page)
+    }
+
+    async selectCategory(category) {
+        let categoryPage = await this.clickButtonCategory()
+        if(category=="autochoose") {await categoryPage.clickButtonFirstCategory()}
+        else {
+
+        }
     }
     
     async clickButtonNext() {
         await this.baseClickButton(this.buttonNext)
+        return new Promote()
     }
     
     async clickButtonAcceptTerms() {

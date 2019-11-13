@@ -31,6 +31,16 @@ export default class BasePage {
         await actionsScroll.scrollTo(this.page, selector)
     }
 
+    async baseUploadFile(selector, filePath) {
+        await this.baseWaitForMovementToFinish(selector)
+        let input = await this.page.$(selector)
+        await input.uploadFile(filePath)
+    }
+
+    /**
+    * @field_selector click on this elem opens options list
+    * @option_selector click on the desired option
+    */
     async baseSelect(field_selector, option_selector) {
         await actionsSelect.selectBySelector(this.page, field_selector, option_selector)
     }

@@ -11,7 +11,4 @@ export default class Ogloszenia extends BasePage {
     get offerRows()  {return '#adsTable tr.row-elem'}
     get previews()  {return '#adsTable tr.row-elem [id^=preview]'}
     get previewsVar()  {return '#adsTable tr.row-elem:nth-child(var) [id^=preview]'}
-
-
-
 };

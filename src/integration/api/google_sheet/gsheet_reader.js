@@ -103,14 +103,15 @@ export default class sheetReader {
             throw new Error("no items in changeArray")
         }
 
+        let captionCells = cells.filter((value) => value['row'] == this.captionRow)
+
         this.changeArray.forEach(function (changeObj) {
-            let captionCells = cells.filter((value) => value['row'] == this.captionRow)
             let changedCellCol = captionCells.filter((value) => value['_value'] == changeObj.field)
             let desiredCol = changedCellCol[0].col
             let desiredRow = 0
             let desiredIndex = 0
 
-            function getDesiredRow(cell) {if ((cell.col == 1) && (cell._value = changeObj.field)) {
+            function getDesiredRow(cell) {if ((cell.col == 1) && (cell._value == changeObj.name)) {
                 desiredRow = cell.row
             }}
             function getDesiredIndex(cell, index) {if ((cell.col == desiredCol) && (cell.row == desiredRow)) {
@@ -121,6 +122,7 @@ export default class sheetReader {
             let desiredCell = cells[desiredIndex]
             desiredCell.value = changeObj.new_value;
             desiredCell.save();
+            console.log("saved value %s for item: %s in the field: %s", changeObj.new_value,changeObj.name,changeObj.field)
         })
         // INFO: bulkUpdateCells updates many cells at once: https://www.npmjs.com/package/google-spreadsheet
         // this.sheet.bulkUpdateCells(cells); <= not tested
