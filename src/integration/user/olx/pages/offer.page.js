@@ -1,7 +1,6 @@
-import ActionsClick from "../../utils/actions/actions-click"
-const  actionsClick = new ActionsClick()
+import BasePage from "./base.page";
 
-export default class Offer {
+export default class Offer extends BasePage {
 
     get title() {return ".offer-titlebox h1"}
     get price() {return ".pricelabel strong"}

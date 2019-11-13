@@ -1,7 +1,6 @@
-import ActionsClick from "../../utils/actions/actions-click"
-const  actionsClick = new ActionsClick()
+import BasePage from "./base.page";
 
-export default class Ogloszenia {
+export default class Ogloszenia extends BasePage {
 
     get active() {return '#typeactive'}
     get zakonczone() {return '#typearchive a'}

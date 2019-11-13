@@ -1,15 +1,10 @@
-import ActionsClick from "../../utils/actions/actions-click"
-const  actionsClick = new ActionsClick()
+import BasePage from "./base.page";
 
-export default class Category {
-
-    constructor(page){
-        this.page = page
-    }
+export default class Category extends BasePage {
 
     get buttonFirstCategory() { return ".caticon" }
 
     async clickButtonFirstCategory() {
-        await actionsClick.clickAfter_expAnim(this.page, this.buttonFirstCategory)
+        await this.baseClickButton(this.buttonFirstCategory)
     }
 }

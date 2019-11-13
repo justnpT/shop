@@ -3,10 +3,10 @@ let config = require('../config');
 let cred = require(config.credentials);
 let su = new setup(config.baseUrl);
 
-let home = require('../pages/page.home');
+let home = require('../pages/home.page');
 let login = require('../pages/modal.login');
-let advertisments = require('../pages/page.ogloszenia');
-let offer = require('../pages/page.offer');
+let advertisments = require('../pages/offers.page');
+let offer = require('../pages/offer.page');
 
 (async () => {
     const page = await su.start();

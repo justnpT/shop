@@ -24,13 +24,17 @@ export default class sheetReader {
     }
 
     /**
-     * @param [{name(ID): value, field: value, new_value: value}] changeArray           insert new_value to every of the specified fields.
+     * Inserts new_value to every of the specified fields.
+     * @param {name: {name(ID)_of_the_item}, field: {itemKeys.field_name}, new_value: {whatever_you_wish}}
      */
     async updateItemList(changeArray) {
         this.changeArray = changeArray
         await this.manageGsheet(this.setItemList)
     }
 
+    /**
+     * Provide manageGsheet with proper function and execute that like in runner.js
+     */
     async manageGsheet(manageCells) {
         async.series([
             function setAuth(step) {
@@ -40,7 +44,7 @@ export default class sheetReader {
                 this.doc.getInfo(function (err, info) {
                     console.log('Loaded doc: ' + info.title + ' by ' + info.author.email);
                     this.sheet = info.worksheets[0];
-                    console.log('sheet 1: ' + this.sheet.title + ' ' + this.sheet.rowCount + 'x' + this.sheet.colCount);
+                    console.log('sheet: ' + this.sheet.title + ' ' + this.sheet.rowCount + 'x' + this.sheet.colCount);
                     step();
                 }.bind(this));
             }.bind(this),
@@ -59,10 +63,11 @@ export default class sheetReader {
         });
     }
 
+    /**
+     * Iterate over dashboard to get all items in their current state
+     */
     getFreshItemList(err, cells) {
-
         let captionList = []
-
         let last_row = cells[cells.length - 1]['row']
         let captionCells = cells.filter((value) => value['row'] == this.captionRow)
 
@@ -88,34 +93,36 @@ export default class sheetReader {
         // step();
     }
 
+    /**
+     * this.changeArray needs to be field with at least one elemnet {} of such structure:
+     * {name: {name(ID)_of_the_item}, field: {itemKeys.field_name}, new_value: {whatever_you_wish}}
+     */
     setItemList(err, cells) {
-        //TODO: implemnet this so that everything happens right based on changeArray for every of its elements
-        //https://www.npmjs.com/package/google-spreadsheet
-        let captionCells = cells.filter((value) => value['row'] == this.captionRow)
-        let changedCellCol = captionCells.filter((value) => value['_value'] == this.changeArray[0].field)
-        let desiredCol = changedCellCol[0].col
-        let desiredRow = 0
-        let desiredIndex = 0
 
-        function getDesiredRow(cell) {if ((cell.col == 1) && (cell._value = this.changeArray[0].field)) {
-            desiredRow = cell.row
-        }}
-        function getDesiredIndex(cell, index) {if ((cell.col == desiredCol) && (cell.row == desiredRow)) {
-            desiredIndex = index
-        }}
-        cells.forEach(getDesiredRow.bind(this))
-        cells.forEach(getDesiredIndex)
-        console.log(desiredIndex)
-        let desiredCell = cells[desiredIndex]
-        desiredCell.value = this.changeArray[0].new_value;
-        desiredCell.save();
-        // TODO bulkUpdateCells updates this for me
-        // this.sheet.bulkUpdateCells(cells);
+        if (!this.changeArray) {
+            throw new Error("no items in changeArray")
+        }
 
-        // this.eventEmitter.emit(events.itemListUpdated, this.freshItemList)
-        // step();
+        this.changeArray.forEach(function (changeObj) {
+            let captionCells = cells.filter((value) => value['row'] == this.captionRow)
+            let changedCellCol = captionCells.filter((value) => value['_value'] == changeObj.field)
+            let desiredCol = changedCellCol[0].col
+            let desiredRow = 0
+            let desiredIndex = 0
+
+            function getDesiredRow(cell) {if ((cell.col == 1) && (cell._value = changeObj.field)) {
+                desiredRow = cell.row
+            }}
+            function getDesiredIndex(cell, index) {if ((cell.col == desiredCol) && (cell.row == desiredRow)) {
+                desiredIndex = index
+            }}
+            cells.forEach(getDesiredRow)
+            cells.forEach(getDesiredIndex)
+            let desiredCell = cells[desiredIndex]
+            desiredCell.value = changeObj.new_value;
+            desiredCell.save();
+        })
+        // INFO: bulkUpdateCells updates many cells at once: https://www.npmjs.com/package/google-spreadsheet
+        // this.sheet.bulkUpdateCells(cells); <= not tested
     }
-
 }
-
- module.exports = sheetReader;

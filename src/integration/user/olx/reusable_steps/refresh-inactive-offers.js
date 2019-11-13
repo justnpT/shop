@@ -3,9 +3,9 @@ let config = require('../config');
 let cred = require(config.credentials_path);
 let su = new setup(config.olx_home);
 
-let home = require('../pages/page.home');
+let home = require('../pages/home.page');
 let login = require('../pages/modal.login');
-let advertisments = require('../pages/page.ogloszenia');
+let advertisments = require('../pages/offers.page');
 
 (async () => {
     const page = await su.start();

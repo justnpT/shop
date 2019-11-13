@@ -1,19 +1,6 @@
-import ActionsClick from "../../utils/actions/actions-click"
-import ActionsType from "../../utils/actions/actions-fill"
-import ActionsSelect from "../../utils/actions/actions-select"
-import Movement from "../../utils/monitoring/movement"
-import ActionsScroll from "../../utils/actions/actions-scroll"
-const  actionsScroll = new ActionsScroll()
-const  movement = new Movement()
-const  actionsSelect = new ActionsSelect()
-const  actionsClick = new ActionsClick()
-const  actionsType = new ActionsType()
+import BasePage from "./base.page";
 
-export default class NewOffer {
-
-    constructor(page){
-        this.page = page
-    }
+export default class NewOffer extends BasePage {
 
     get inputTitle() { return "#add-title" }
     get inputDescription() { return "#add-description" }
@@ -27,7 +14,7 @@ export default class NewOffer {
     get photoInput() { return "#simple_form_inputs div:nth-child($INDEX$) input.file" }
 
     async clickButtonSimplePhotoUpload() {
-        await actionsClick.clickAfter_expAnim(this.page, this.buttonSimplePhotoUpload)
+        await this.baseClickButton(this.buttonSimplePhotoUpload)
     }
 
     async uploadPhotoes(photoesArray, gdriveFolder, itemName) {
@@ -38,14 +25,14 @@ export default class NewOffer {
 
     async uploadPhoto(photoNumber, photoPath) {
         let sel = this.photoInput.replace("$INDEX$", photoNumber)
-        await movement.waitForMovementToFinishAfterExp(this.page, sel)
+        await this.baseWaitForMovementToFinish(sel)
         let input = await this.page.$(sel)
         await input.uploadFile(photoPath)
     }
 
     async selectPrivateBusinessType() {
-        await actionsScroll.scrollTo(this.page, this.dropdownBusinessType)
-        await actionsSelect.selectBySelector(this.page, this.dropdownBusinessType, this.businessTypePrivate)
+        await this.baseScrollTo(this.dropdownBusinessType)
+        await this.baseSelect(this.dropdownBusinessType, this.businessTypePrivate)
     }
 
     async selectRelevantOptions() {
@@ -53,28 +40,27 @@ export default class NewOffer {
     }
 
     async fillInputPrice(price) {
-        await actionsType.typeAfter_expAnim(this.page, this.inputPrice, price)
+        await this.baseFillInput(this.inputPrice, price)
     }
     
     async clickButtonCategory() {
-        await actionsClick.clickAfter_expAnim(this.page, this.buttonCategory)
+        await this.baseClickButton(this.buttonCategory)
     }
     
     async clickButtonNext() {
-        await actionsClick.clickAfter_expAnim(this.page, this.buttonNext)
+        await this.baseClickButton(this.buttonNext)
     }
     
     async clickButtonAcceptTerms() {
-        await actionsClick.clickAfter_expAnim(this.page, this.buttonAcceptTerms)
+        await this.baseClickButton(this.buttonAcceptTerms)
     }
 
     async fillInputDescription(text) {
-        await actionsType.typeAfter_expAnim(this.page, this.inputDescription, text)
+        await this.baseFillInput(this.inputDescription, text)
     }
 
     async fillInputTitle(text) {
-        await actionsType.typeAfter_expAnim(this.page, this.inputTitle, text)
+        await this.baseFillInput(this.inputTitle, text)
     }
 
 }
-

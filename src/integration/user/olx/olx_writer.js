@@ -1,8 +1,8 @@
 import Setup from '../setup/setup'
 import config from './config'
 import Login from "./pages/modal.login"
-import Home from "./pages/page.home"
-import NewOffer from "./pages/page.new.offer"
+import Home from "./pages/home.page"
+import NewOffer from "./pages/new.offer.page"
 import Category from "./pages/modal.category"
 import BusinessRules from "./../../../tasks_manager/businessRules"
 import BusinessEnums from "./../../../tasks_manager/businessEnums"
@@ -53,8 +53,8 @@ export default class olxManager {
     }
 
     async renewItem(item) {
-        // await this.start();
-        // await this.page.goto(config.archive)
+        await this.start();
+        await this.page.goto(config.archive)
         //TODO: wyszukac item na liscie zakonczonych ogloszen i aktywowac
         let link = "https://www.olx.pl/oferta/niezwykla-wiertarka-wahadlowa-CID628-IDBMP9S.html"
         this.changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_info_link, new_value: link})
