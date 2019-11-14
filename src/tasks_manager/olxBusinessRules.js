@@ -11,14 +11,14 @@ export default class OlxBusinessRules {
     }
 
     addItem(item) {
-        if (item[itemKeys.olx_update] != 1) {console.log(('No decision to update on olx for '+item[itemKeys.name])); return false}
         if (item[itemKeys.olx_active] == 1) {console.log(('Item is already active on olx '+item[itemKeys.name])); return false}
+        if (item[itemKeys.olx_update] != 1) {return false}
         else {return true}
     }
 
     updateItem(item) {
-        if (item[itemKeys.olx_update] != 1) {console.log(('No decision to update on olx for '+item[itemKeys.name])); return false}
-        if (item[itemKeys.olx_active] == 0) {console.log(('Cannot update item inactive on olx '+item[itemKeys.name])); return false}
+        if (item[itemKeys.olx_active] == 0) {console.log(('Cannot update item that is inactive on olx '+item[itemKeys.name])); return false}
+        if (item[itemKeys.olx_update] != 1) {return false}
         else {return true}
     }
 

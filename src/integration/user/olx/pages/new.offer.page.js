@@ -22,8 +22,12 @@ export default class NewOffer extends BasePage {
 
     async uploadPhotoes(photoesArray, gdriveFolder, itemName) {
         for (let i = 1; i <= photoesArray.length; i++) {
-            await this.uploadPhoto(i, gdriveFolder+"\\"+itemName+"\\"+photoesArray[i-1])
+            await this.uploadPhoto(i, gdriveFolder+"\\"+itemName+"\\photoes\\"+photoesArray[i-1])
         }
+    }
+
+    async fillInputDescription(gdriveFolder, itemName) {
+        await this.baseFillInput(this.inputDescription, text)
     }
 
     async uploadPhoto(photoNumber, photoPath) {

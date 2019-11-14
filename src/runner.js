@@ -1,5 +1,5 @@
 import sheetReader from './integration/api/google_sheet/gsheet_reader.js'
-import olxManager from './integration/user/olx/olx_writer.js'
+import olxManager from './integration/user/olx/olx.writer.js'
 import BusinessEnums from "./tasks_manager/businessEnums"
 const EventEmitter = require('events').EventEmitter;
 const eventEmitter = new EventEmitter;

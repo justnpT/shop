@@ -12,13 +12,13 @@ let creds = require("../../../../credentials/credentials")
 const itemKeys = new BusinessEnums().itemKeys
 const olxBusinessRules = new OlxBusinessRules()
 const events = new BusinessEnums().emitedEvents
+import changeArray from "./change.array"
 
 export default class olxManager {
     constructor(eventEmitter) {
         this.eventEmitter = eventEmitter;
-        this.changeArray = []
         this.olxCreds = creds.olx;
-        this.photoesPath = creds.gdrive.photoesPath;
+        this.gdrivePath = creds.gdrive.productsPath;
         this.today = new Date();
         this.itemExpirationDate = new Date(this.today)
         this.itemExpirationDate.setDate(this.itemExpirationDate.getDate() + 30)
@@ -52,9 +52,9 @@ export default class olxManager {
         }
 
         await this.stop()
-        this.eventEmitter.emit(events.changeArrayReady, this.changeArray)
+        this.eventEmitter.emit(events.changeArrayReady, changeArray)
         // TODO: connect to gsheet writer and write all {changed: newValue} fields from current this.itemList
-        // TODO: so make sure all desired updates are on changeArray and do: this.eventEmitter.emit(events.changeArrayReady, this.changeArray)
+        // TODO: so make sure all desired updates are on changeArray and do: this.eventEmitter.emit(events.changeArrayReady, changeArray)
 
     }
 
@@ -64,8 +64,8 @@ export default class olxManager {
         const archivePage = new ArchivePage(this.page)
         await archivePage.clickButtonActivate(item[itemKeys.title])
         // TODO: add assertion for link reactivation
-        this.changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_active, new_value: 1})
-        this.changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_expiration_date, new_value: this.itemExpirationDate})
+        changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_active, new_value: 1})
+        changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_expiration_date, new_value: this.itemExpirationDate})
     }
 
     async updateItem(item) {
@@ -92,23 +92,23 @@ export default class olxManager {
         // await newOffer.clickButtonCategory()
         // await category.clickButtonFirstCategory()
         await newOffer.fillInputPrice(item[itemKeys.price])
-        await newOffer.fillInputDescription(item[itemKeys.description])
+        await newOffer.fillInputDescription(this.gdrivePath, item[itemKeys.description])
         await newOffer.selectPrivateBusinessType()
         await newOffer.clickButtonSimplePhotoUpload()
-        await newOffer.uploadPhotoes(photoes, this.photoesPath, item[itemKeys.name])
+        await newOffer.uploadPhotoes(photoes, this.gdrivePath, item[itemKeys.name])
         await newOffer.clickButtonAcceptTerms()
         let promote = await newOffer.clickButtonNext()
         await promote.clickButtonAddWithoutPromotion()
         let editLink = 'i should get it from olx'
-        this.changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_active, new_value: 1})
-        this.changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_update, new_value: "0"})
-        this.changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_expiration_date, new_value: this.itemExpirationDate})
-        this.changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_edit_link, new_value: editLink})
+        changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_active, new_value: 1})
+        changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_update, new_value: "0"})
+        changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_expiration_date, new_value: this.itemExpirationDate})
+        changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_edit_link, new_value: editLink})
     }
 
     getPhotoes(itemName) {
         let fs = require('fs');
-        let photoFiles = fs.readdirSync(this.photoesPath+"\\"+itemName);
+        let photoFiles = fs.readdirSync(this.gdrivePath+"\\"+itemName);
         return photoFiles;
     }
 
