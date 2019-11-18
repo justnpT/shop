@@ -1,6 +1,7 @@
 var GoogleSpreadsheet = require('google-spreadsheet')
 var async = require('async');
 import BusinessEnums from "./../../../tasks_manager/businessEnums"
+import changeArray from "../../../integration/user/olx/change.array"
 const events = new BusinessEnums().emitedEvents
 
 export default class sheetReader {
@@ -25,10 +26,9 @@ export default class sheetReader {
 
     /**
      * Inserts new_value to every of the specified fields.
-     * @param {name: {name(ID)_of_the_item}, field: {itemKeys.field_name}, new_value: {whatever_you_wish}}
      */
-    async updateItemList(changeArray) {
-        this.changeArray = changeArray
+    async updateItemList() {
+        this.changeArray = changeArray.get()
         await this.manageGsheet(this.setItemList)
     }
 

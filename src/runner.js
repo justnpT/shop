@@ -12,13 +12,13 @@ async function writeFreshItemList() {
     await olx.manageOlx(spreadsheet.freshItemList)
 }
 
-async function updateItemList(changeArray) {
-    await spreadsheet.updateItemList(changeArray)
+async function updateItemList() {
+    await spreadsheet.updateItemList()
 }
 
 (async() => {
     eventEmitter.on(events.itemListUpdated, writeFreshItemList)
     eventEmitter.on(events.changeArrayReady, updateItemList)
-    // await spreadsheet.readFreshItemList();
-    await spreadsheet.readFreshItemListMock();
+    await spreadsheet.readFreshItemList();
+    // await spreadsheet.readFreshItemListMock();
 })();

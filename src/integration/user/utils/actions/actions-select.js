@@ -3,42 +3,9 @@ let actionsClick = new ActionsClick()
 
 export default class ActionsSelect {
 
-    async selectByOptionText(page, selectors, selector, optionText) {
-        let elements = await page.$$(selectors);
-        for(let i=1; i <= elements.length; i++){
-            let sel = selector.replace("$index", i)
-            let text = await page.evaluate((sel) => document.querySelector(sel).textContent, sel);
-            if(text.includes(optionText)) {
-                console.log('AUTOTESTS: select dropdown option with selector: %s', sel)
-                await actionsClick.clickAfter_expAnimMaxImp(page, sel, {delay: 100});
-                return sel;
-            }
-        }
-        throw Error('option '+ optionText + ' not found among selectors: '+selectors)
-    }
-
-    async selectByTextFromDropdown(page, dropdownSelector, selectors, selector, optionText) {
-        await actionsClick.clickAfter_expAnim(page, dropdownSelector);
-        let sel = await this.selectByOptionText(page, selectors, selector, optionText);
-        await page.waitForSelector(sel, {hidden: true});
-    }
-
     async selectBySelector(page, field_selector, option_selector) {
         await actionsClick.clickAfter_expAnim(page, field_selector)
         await actionsClick.clickAfter_expAnim_thenAwaitHidden(page, option_selector)
-    }
-
-    async getListOfCurrentOptions(page, selector_of_many, selector_of_one) {
-        let elements = await page.$$(selector_of_many)
-        let list = []
-        for(let i=1; i< elements.length; i++){
-            let sel = selector_of_one.replace("$var", i)
-            await page.waitForSelector(sel);
-            let text = await page.evaluate((sel) => document.querySelector(sel).textContent, sel);
-            let noSpacesText = text.replace(/ /g,'');
-            list.push(noSpacesText)
-        }
-        return list
     }
 
     async selectPhonePrefixOnMobile(page, select_selector, phonePrefix) {

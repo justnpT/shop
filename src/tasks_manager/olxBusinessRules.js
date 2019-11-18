@@ -7,7 +7,7 @@ export default class OlxBusinessRules {
         let itemExpirationDate = new Date(item[itemKeys.olx_expiration_date]);
         let today = new Date();
         if (today >= itemExpirationDate) {return true}
-        else {console.log(('Item has not expired yet'+itemKeys.name)); return false}
+        else {console.log(('Item has not expired yet'+item[itemKeys.name])); return false}
     }
 
     addItem(item) {

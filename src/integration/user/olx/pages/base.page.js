@@ -3,11 +3,13 @@ import ActionsType from "../../utils/actions/actions-fill"
 import ActionsSelect from "../../utils/actions/actions-select"
 import Movement from "../../utils/monitoring/movement"
 import ActionsScroll from "../../utils/actions/actions-scroll"
+import ActionsGet from "../../utils/actions/actions-get";
 const  actionsScroll = new ActionsScroll()
 const  movement = new Movement()
 const  actionsSelect = new ActionsSelect()
 const  actionsClick = new ActionsClick()
 const  actionsType = new ActionsType()
+const  actionsGet = new ActionsGet()
 
 export default class BasePage {
 
@@ -17,6 +19,14 @@ export default class BasePage {
 
     async baseClickButton(selector) {
         await actionsClick.clickAfter_expAnim(this.page, selector)
+    }
+
+    async baseClickByOptionText(selectorOfList, nthSelectorInTheList, optionText) {
+        await actionsClick.clickByOptionText(this.page, selectorOfList, nthSelectorInTheList, optionText)
+    }
+
+    async baseGetListOfTexts(selectorOfList, nthSelectorInTheList, noSpacesText = false, everyNthElem = 1) {
+        await actionsGet.getListOfCurrentOptions(this.page, selectorOfList, nthSelectorInTheList, noSpacesText, everyNthElem)
     }
 
     async baseFillInput(selector, value) {

@@ -52,7 +52,7 @@ export default class olxManager {
         }
 
         await this.stop()
-        this.eventEmitter.emit(events.changeArrayReady, changeArray)
+        this.eventEmitter.emit(events.changeArrayReady)
         // TODO: connect to gsheet writer and write all {changed: newValue} fields from current this.itemList
         // TODO: so make sure all desired updates are on changeArray and do: this.eventEmitter.emit(events.changeArrayReady, changeArray)
 
@@ -64,8 +64,8 @@ export default class olxManager {
         const archivePage = new ArchivePage(this.page)
         await archivePage.clickButtonActivate(item[itemKeys.title])
         // TODO: add assertion for link reactivation
-        changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_active, new_value: 1})
-        changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_expiration_date, new_value: this.itemExpirationDate})
+        changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_active, new_value: 1})
+        changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_expiration_date, new_value: this.itemExpirationDate})
     }
 
     async updateItem(item) {
@@ -87,28 +87,31 @@ export default class olxManager {
         await this.page.goto(config.newOffer)
         const newOffer = new NewOffer(this.page)
         const category = new Category(this.page)
-        await newOffer.clickButtonCategory()
+        await newOffer.selectCategory(item)
         await newOffer.fillInputTitle(item[itemKeys.title])
         // await newOffer.clickButtonCategory()
         // await category.clickButtonFirstCategory()
         await newOffer.fillInputPrice(item[itemKeys.price])
-        await newOffer.fillInputDescription(this.gdrivePath, item[itemKeys.description])
+        await newOffer.fillInputDescriptionFromGdrive(this.gdrivePath, item)
         await newOffer.selectPrivateBusinessType()
         await newOffer.clickButtonSimplePhotoUpload()
         await newOffer.uploadPhotoes(photoes, this.gdrivePath, item[itemKeys.name])
         await newOffer.clickButtonAcceptTerms()
         let promote = await newOffer.clickButtonNext()
         await promote.clickButtonAddWithoutPromotion()
-        let editLink = 'i should get it from olx'
-        changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_active, new_value: 1})
-        changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_update, new_value: "0"})
-        changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_expiration_date, new_value: this.itemExpirationDate})
-        changeArray.push({name: item[itemKeys.name], field: itemKeys.olx_edit_link, new_value: editLink})
+        // TODO: get editLink at some point
+        let editLink = 'i should get it from olx at some point of adding new item'
+        changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_active, new_value: "active"})
+        changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_update, new_value: "no"})
+        changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_start_date, new_value: this.today})
+        changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_expiration_date, new_value: this.itemExpirationDate})
+        changeArray.add({name: item[itemKeys.name], field: itemKeys.photoes, new_value: "updated"})
+        changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_edit_link, new_value: editLink})
     }
 
     getPhotoes(itemName) {
         let fs = require('fs');
-        let photoFiles = fs.readdirSync(this.gdrivePath+"\\"+itemName);
+        let photoFiles = fs.readdirSync(this.gdrivePath+"\\"+itemName+"\\photoes\\");
         return photoFiles;
     }
 

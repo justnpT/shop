@@ -50,4 +50,30 @@ export default class ActionsClick {
         await page.waitForSelector(selector, {hidden: true});
     }
 
+    /**
+     * Clicks on an element that contains a text and is part of a larger list
+     * @selectorOfList selector that returns the list of the elements to search through
+     * @nthSelectorInTheList this selector should contain $index$ in the place of nth-child($index$) and lead to text
+     * @optionText the text to search through
+     */
+    async clickByOptionText(page, selectorOfList, nthSelectorInTheList, optionText) {
+        let elements = await page.$$(selectorOfList);
+        for(let i=1; i <= elements.length; i++){
+            let sel = nthSelectorInTheList.replace("$index$", i)
+            let text = await page.evaluate((sel) => document.querySelector(sel).textContent, sel);
+            if(text.includes(optionText)) {
+                console.log('AUTOTESTS: select dropdown option with selector: %s', sel)
+                await this.clickAfter_expAnimMaxImp(page, sel, {delay: 100});
+                return sel;
+            }
+        }
+        throw Error('option '+ optionText + ' not found among selectors: '+selectorOfList)
+    }
+
+    async selectByTextFromDropdown(page, dropdownSelector, selectors, selector, optionText) {
+        await this.clickAfter_expAnim(page, dropdownSelector);
+        let sel = await this.clickByOptionText(page, selectors, selector, optionText);
+        await page.waitForSelector(sel, {hidden: true});
+    }
+
 }
