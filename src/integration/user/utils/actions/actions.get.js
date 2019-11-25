@@ -12,8 +12,8 @@ export default class ActionsGet {
     async getListOfCurrentOptions(page, selectorOfList, nthSelectorInTheList, noSpacesText = false, everyNthElem = 1) {
         let elements = await page.$$(selectorOfList)
         let list = []
-        for(let i=1; i< elements.length; i++){
-            if (!i%everyNthElem) {
+        for(let i=1; i<= elements.length; i++){
+            if ((i%everyNthElem==1) || (everyNthElem==1) ) {
                 let sel = nthSelectorInTheList.replace("$index$", i)
                 await page.waitForSelector(sel);
                 let text = await page.evaluate((sel) => document.querySelector(sel).textContent, sel);

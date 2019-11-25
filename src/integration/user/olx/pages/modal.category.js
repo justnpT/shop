@@ -2,9 +2,9 @@ import BasePage from "./base.page";
 
 export default class Category extends BasePage {
 
-    get buttonFirstCategory() { return ".caticon" }
+    get buttonFirstCategory() { return ".icon-link-main .caticon" }
     get buttonFirstLevelCategory() { return "[data-category-name='$category$'"}
-    get listOfChoosenCategories() { return "#catgory-breadcrumb-text"}
+    get listOfChoosenCategories() { return "#catgory-breadcrumb-text span"}
     get nthElemInThelistOfChoosenCategories() { return "#catgory-breadcrumb-text span:nth-child($index$)"}
     get listSecondLevelCategory() { return ".chooseway > div:nth-child(1) > div:nth-child(2) ul li"}
     get nthButtonSecondLevelCategory() { return ".chooseway > div:nth-child(1) > div:nth-child(2) ul li:nth-child($index$) a > .inlblk"}
@@ -27,7 +27,8 @@ export default class Category extends BasePage {
         await this.baseClickButton(this.buttonFirstCategory)
     }
 
+    //TODO: this should be assertion class of modal.category, and baseGetListOfText should not be part of base.page
     async getChoosenCategories() {
-        await this.baseGetListOfTexts(this.listOfChoosenCategories, this.nthElemInThelistOfChoosenCategories, false, 2)
+        return await this.baseGetListOfTexts(this.listOfChoosenCategories, this.nthElemInThelistOfChoosenCategories, false, 2)
     }
 }

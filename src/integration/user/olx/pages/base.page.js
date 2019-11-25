@@ -26,7 +26,7 @@ export default class BasePage {
     }
 
     async baseGetListOfTexts(selectorOfList, nthSelectorInTheList, noSpacesText = false, everyNthElem = 1) {
-        await actionsGet.getListOfCurrentOptions(this.page, selectorOfList, nthSelectorInTheList, noSpacesText, everyNthElem)
+        return await actionsGet.getListOfCurrentOptions(this.page, selectorOfList, nthSelectorInTheList, noSpacesText, everyNthElem)
     }
 
     async baseFillInput(selector, value) {

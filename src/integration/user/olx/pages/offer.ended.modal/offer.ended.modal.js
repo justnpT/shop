@@ -1,4 +1,4 @@
-import BasePage from "./base.page";
+import BasePage from "../base.page";
 
 export default class OfferEndedModal extends BasePage {
 

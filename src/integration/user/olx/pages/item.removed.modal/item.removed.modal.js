@@ -1,5 +1,5 @@
-import BasePage from "./base.page";
 import OfferEndedModal from "../offer.ended.modal/offer.ended.modal";
+import BasePage from "../base.page";
 
 export default class ItemRemovedModal extends BasePage {
 

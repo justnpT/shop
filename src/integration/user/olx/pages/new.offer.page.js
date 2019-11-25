@@ -15,6 +15,8 @@ export default class NewOffer extends BasePage {
     get inputPrice() { return "input.price" }
     get dropdownBusinessType() { return "#targetid_private_business" }
     get businessTypePrivate() { return "#targetid_private_business li:nth-child(2) a" }
+    get dropdownState() { return "#targetparam13" }
+    get stateUsed() { return "#targetparam13 li:nth-child(2) a" }
     get buttonSimplePhotoUpload() { return "#show-gallery-html" }
     get photoInput() { return "#simple_form_inputs div:nth-child($INDEX$) input.file" }
 
@@ -34,17 +36,12 @@ export default class NewOffer extends BasePage {
     }
 
     async fillInputDescriptionFromGdrive(gdriveFolder, item) {
-        if (item[itemKeys.description] != 1) {
-            console.error(('Item has no description update decision: '+item[itemKeys.name]))
-            return false
-        } else {
         let fs = require('fs');
         let description = fs.readFileSync(gdriveFolder+"\\"+item[itemKeys.name]+"\\info.txt", "utf8");
         //TODO iconv-lite or iconv to support polish letters: https://stackoverflow.com/questions/14551608/list-of-encodings-that-node-js-supports
         //
         await this.fillInputDescription(description)
         changeArray.add({name: item[itemKeys.name], field: itemKeys.description, new_value: "updated"})
-        }
     }
 
     async uploadPhoto(photoNumber, photoPath) {
@@ -56,8 +53,8 @@ export default class NewOffer extends BasePage {
         await this.baseSelect(this.dropdownBusinessType, this.businessTypePrivate)
     }
 
-    async selectRelevantOptions() {
-    //TODO: do a switch that iterates over all select elements sel="fieldset select", then based on ID of that elem performs action. param13 or id_private_business <- different actions
+    async selectStateUsed() {
+        await this.baseSelect(this.dropdownState, this.stateUsed)
     }
 
     async fillInputPrice(price) {
@@ -73,9 +70,9 @@ export default class NewOffer extends BasePage {
         let categoryPage = await this.clickButtonCategory()
         if(item[itemKeys.category]=="autochoose") {
             await categoryPage.clickButtonFirstCategory()
-            let categories = categoryPage.getChoosenCategories()
+            let categories = await categoryPage.getChoosenCategories()
             let newValue = {}
-            for (let i = 0; i < categories.length; i++) {newValue['cat'+i+1] = categories[0]}
+            for (let i = 0; i < categories.length; i++) {newValue['cat'+(i+1)] = categories[i]}
             changeArray.add({name: item[itemKeys.name], field: itemKeys.category, new_value: JSON.stringify(newValue)})
         }
         else {
@@ -92,6 +89,7 @@ export default class NewOffer extends BasePage {
     }
     
     async clickButtonNext() {
+        await this.baseScrollTo(this.buttonNext)
         await this.baseClickButton(this.buttonNext)
         return new Promote(this.page)
     }

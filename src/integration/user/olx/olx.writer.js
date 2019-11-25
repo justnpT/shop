@@ -90,11 +90,13 @@ export default class olxManager {
         const itemRemovedModal = await archivePage.clickButtonRemove(item[itemKeys.title])
         const offerEndedModal = await itemRemovedModal.clickButtonHasBeenSold()
         await offerEndedModal.clickButtonCancel()
-        // TODO: add assertion for link remove message
+        // TODO: 2 weeks after sell, add removing photoes from gdrive, keep the folder and description for future use
+        // TODO: 2 weeks after sell, add moving the whole sold item from admin tab to sold tab in gsheet
         changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_active, new_value: "sold"})
         changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_update, new_value: "sold"})
         changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_info_link, new_value: "sold"})
         changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_edit_link, new_value: "sold"})
+        changeArray.add({name: item[itemKeys.name], field: itemKeys.photoes, new_value: "sold"})
         changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_start_date, new_value: this.today})
     }
 
@@ -103,17 +105,15 @@ export default class olxManager {
         let photoes = this.getPhotoes(item[itemKeys.name])
         await this.page.goto(config.newOffer)
         const newOffer = new NewOffer(this.page)
-        const category = new Category(this.page)
-        await newOffer.selectCategory(item)
         await newOffer.fillInputTitle(item[itemKeys.title])
-        // await newOffer.clickButtonCategory()
-        // await category.clickButtonFirstCategory()
+        await newOffer.selectCategory(item)
         await newOffer.fillInputPrice(item[itemKeys.price])
-        await newOffer.fillInputDescriptionFromGdrive(this.gdrivePath, item)
         await newOffer.selectPrivateBusinessType()
         await newOffer.clickButtonSimplePhotoUpload()
         await newOffer.uploadPhotoes(photoes, this.gdrivePath, item[itemKeys.name])
         await newOffer.clickButtonAcceptTerms()
+        await newOffer.selectStateUsed()
+        await newOffer.fillInputDescriptionFromGdrive(this.gdrivePath, item)
         let promote = await newOffer.clickButtonNext()
         await promote.clickButtonAddWithoutPromotion()
         // TODO: get editLink at some point
