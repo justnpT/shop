@@ -50,4 +50,33 @@ export default class ActionsClick {
         await page.waitForSelector(selector, {hidden: true});
     }
 
+    /**
+     * Clicks on an element that contains a text and is part of a larger list
+     * @selectorOfList selector that returns the list of the elements to search through
+     * @nthElemWithText selector of elem with text. should contain $index$ in the place of nth-child($index$)
+     * @text the desired text to search for on the list
+     * @nthElemToClick provide if click happens on other nth-elem, at the same level but not the one with text
+     */
+    async clickByOptionText(page, selectorOfList, nthElemWithText, text, nthElemToClick = null) {
+        await page.waitForSelector(selectorOfList, {visible: true})
+        let elements = await page.$$(selectorOfList);
+        for(let i=1; i <= elements.length; i++){
+            let sel = nthElemWithText.replace("$index$", i)
+            let elemText = await page.evaluate((sel) => document.querySelector(sel).textContent, sel);
+            if(elemText.includes(text)) {
+                if (nthElemToClick) {sel = nthElemToClick.replace("$index$", i)}
+                console.log('AUTOTESTS: click on option with text: %s by selector: %s', elemText, sel)
+                await this.clickAfter_expAnimMaxImp(page, sel, {delay: 100});
+                return sel;
+            }
+        }
+        throw Error('option '+ text + ' not found among selectors: '+selectorOfList)
+    }
+
+    async selectByTextFromDropdown(page, dropdownSelector, selectors, selector, optionText) {
+        await this.clickAfter_expAnim(page, dropdownSelector);
+        let sel = await this.clickByOptionText(page, selectors, selector, optionText);
+        await page.waitForSelector(sel, {hidden: true});
+    }
+
 }

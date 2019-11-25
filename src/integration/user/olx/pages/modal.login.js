@@ -1,28 +1,21 @@
-import ActionsClick from "../../utils/actions/actions-click"
-import ActionsType from "../../utils/actions/actions-fill"
-const  actionsType = new ActionsType()
-const  actionsClick = new ActionsClick()
+import BasePage from "./base.page";
 
-export default class Login {
-
-    constructor(page){
-        this.page = page
-    }
+export default class Login extends BasePage {
 
     get buttonLogin() { return "#se_userLogin"}
     get inputEmail() { return "#userEmail" }
     get inputPassword() { return "#userPass" }
 
     async fillInputPassword(password) {
-        await actionsType.typeAfter_expAnim(this.page, this.inputPassword, password)
+        await this.baseFillInput(this.inputPassword, password)
     }
 
     async fillInputEmail(emial) {
-        await actionsType.typeAfter_expAnim(this.page, this.inputEmail, emial)
+        await this.baseFillInput(this.inputEmail, emial)
     }
 
     async clickButtonLogin() {
-        await actionsClick.clickAfter_expAnim(this.page, this.buttonLogin)
+        await this.baseClickButton(this.buttonLogin)
     }
     
     async performLogin(password, email) {
