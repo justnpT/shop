@@ -54,9 +54,7 @@ export default class olxManager {
         }
 
         await this.stop()
-        this.eventEmitter.emit(events.changeArrayReady)
-        // TODO: connect to gsheet writer and write all {changed: newValue} fields from current this.itemList
-        // TODO: so make sure all desired updates are on changeArray and do: this.eventEmitter.emit(events.changeArrayReady, changeArray)
+        // TODO: make sure all desired updates are on changeArray and do: this.eventEmitter.emit(events.changeArrayReady, changeArray)
 
     }
 
@@ -68,6 +66,7 @@ export default class olxManager {
         // TODO: add assertion for link reactivation message
         changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_active, new_value: 1})
         changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_expiration_date, new_value: this.itemExpirationDate})
+        this.eventEmitter.emit(events.changeArrayReady)
     }
 
     async updateItem(item) {
@@ -98,6 +97,7 @@ export default class olxManager {
         changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_edit_link, new_value: "sold"})
         changeArray.add({name: item[itemKeys.name], field: itemKeys.photoes, new_value: "sold"})
         changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_start_date, new_value: this.today})
+        this.eventEmitter.emit(events.changeArrayReady)
     }
 
     async addNewItem(item) {
@@ -124,6 +124,7 @@ export default class olxManager {
         changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_expiration_date, new_value: this.itemExpirationDate})
         changeArray.add({name: item[itemKeys.name], field: itemKeys.photoes, new_value: "updated"})
         changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_edit_link, new_value: editLink})
+        this.eventEmitter.emit(events.changeArrayReady)
     }
 
     getPhotoes(itemName) {

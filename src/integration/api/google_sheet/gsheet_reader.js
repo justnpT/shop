@@ -30,6 +30,7 @@ export default class sheetReader {
     async updateItemList() {
         this.changeArray = changeArray.get()
         await this.manageGsheet(this.setItemList)
+        changeArray.emptyData()
     }
 
     /**

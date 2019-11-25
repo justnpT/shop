@@ -23,7 +23,8 @@ export default class OlxBusinessRules {
     }
 
     removeItem(item) {
-        if (item[itemKeys.sold] == 1) {console.log(('Deactivating sold item: '+item[itemKeys.name])); return true}
+        if ((item[itemKeys.sold] == 1) && (item[itemKeys.olx_active] != 1))
+        {console.log(('Deactivating sold item: '+item[itemKeys.name])); return true}
     }
 
 }

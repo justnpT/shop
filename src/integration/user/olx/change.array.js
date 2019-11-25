@@ -14,6 +14,10 @@ class ChangeArray {
     get(){
         return this._data
     }
+
+    emptyData(){
+        this._data = [];
+    }
 }
 
 const changeArray = new ChangeArray();
