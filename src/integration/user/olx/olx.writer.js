@@ -1,4 +1,4 @@
-import Setup from '../setup/setup'
+import SetupPuppeteer from '../setup/setup.puppeteer'
 import config from './config'
 import Login from "./pages/modal.login"
 import Home from "./pages/home.page"
@@ -13,6 +13,7 @@ const itemKeys = new BusinessEnums().itemKeys
 const olxBusinessRules = new OlxBusinessRules()
 const events = new BusinessEnums().emitedEvents
 import changeArray from "./change.array"
+import ActivePage from "./pages/active/active.page";
 
 export default class olxManager {
     constructor(eventEmitter) {
@@ -27,7 +28,7 @@ export default class olxManager {
     async start() {
         if (this.page) {return false}
         else {
-            this.setup = new Setup(config.baseUrl)
+            this.setup = new SetupPuppeteer(config.baseUrl)
             this.page  = await this.setup.start();
             const login = new Login(this.page)
             const home = new Home(this.page)
@@ -49,6 +50,7 @@ export default class olxManager {
             if (olxBusinessRules.addItem(item)) {await this.addNewItem(item)}
             if (olxBusinessRules.renewItem(item)) {await this.renewItem(item)}
             if (olxBusinessRules.updateItem(item)) {await this.updateItem(item)}
+            if (olxBusinessRules.removeItem(item)) {await this.removeItem(item)}
         }
 
         await this.stop()
@@ -63,7 +65,7 @@ export default class olxManager {
         await this.page.goto(config.archive)
         const archivePage = new ArchivePage(this.page)
         await archivePage.clickButtonActivate(item[itemKeys.title])
-        // TODO: add assertion for link reactivation
+        // TODO: add assertion for link reactivation message
         changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_active, new_value: 1})
         changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_expiration_date, new_value: this.itemExpirationDate})
     }
@@ -79,6 +81,21 @@ export default class olxManager {
         // update photoes only if the field value = 1
         // TODO: for considered item, compare what is on olx page to what comes from gsheet, and add new values on olx and save
         // TODO: no need to save this to freshItemList in the end
+    }
+
+    async removeItem(item) {
+        await this.start();
+        await this.page.goto(config.active)
+        const archivePage = new ActivePage(this.page)
+        const itemRemovedModal = await archivePage.clickButtonRemove(item[itemKeys.title])
+        const offerEndedModal = await itemRemovedModal.clickButtonHasBeenSold()
+        await offerEndedModal.clickButtonCancel()
+        // TODO: add assertion for link remove message
+        changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_active, new_value: "sold"})
+        changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_update, new_value: "sold"})
+        changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_info_link, new_value: "sold"})
+        changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_edit_link, new_value: "sold"})
+        changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_start_date, new_value: this.today})
     }
 
     async addNewItem(item) {

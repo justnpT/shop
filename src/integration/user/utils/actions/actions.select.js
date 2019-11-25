@@ -1,8 +1,12 @@
-import ActionsClick from "./actions-click";
+import ActionsClick from "./actions.click";
 let actionsClick = new ActionsClick()
 
 export default class ActionsSelect {
 
+    /**
+     * @field_selector click on this elem opens options list
+     * @option_selector click on the desired option
+     */
     async selectBySelector(page, field_selector, option_selector) {
         await actionsClick.clickAfter_expAnim(page, field_selector)
         await actionsClick.clickAfter_expAnim_thenAwaitHidden(page, option_selector)

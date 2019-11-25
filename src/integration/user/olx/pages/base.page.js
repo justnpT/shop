@@ -1,9 +1,9 @@
-import ActionsClick from "../../utils/actions/actions-click"
-import ActionsType from "../../utils/actions/actions-fill"
-import ActionsSelect from "../../utils/actions/actions-select"
+import ActionsClick from "../../utils/actions/actions.click"
+import ActionsType from "../../utils/actions/actions.fill"
+import ActionsSelect from "../../utils/actions/actions.select"
 import Movement from "../../utils/monitoring/movement"
-import ActionsScroll from "../../utils/actions/actions-scroll"
-import ActionsGet from "../../utils/actions/actions-get";
+import ActionsScroll from "../../utils/actions/actions.scroll"
+import ActionsGet from "../../utils/actions/actions.get"
 const  actionsScroll = new ActionsScroll()
 const  movement = new Movement()
 const  actionsSelect = new ActionsSelect()
@@ -21,8 +21,8 @@ export default class BasePage {
         await actionsClick.clickAfter_expAnim(this.page, selector)
     }
 
-    async baseClickByOptionText(selectorOfList, nthSelectorInTheList, optionText) {
-        await actionsClick.clickByOptionText(this.page, selectorOfList, nthSelectorInTheList, optionText)
+    async baseClickByOptionText(selectorOfList, nthElemWithText, optionText, nthElemToClick = null) {
+        await actionsClick.clickByOptionText(this.page, selectorOfList, nthElemWithText, optionText, nthElemToClick)
     }
 
     async baseGetListOfTexts(selectorOfList, nthSelectorInTheList, noSpacesText = false, everyNthElem = 1) {
@@ -47,10 +47,6 @@ export default class BasePage {
         await input.uploadFile(filePath)
     }
 
-    /**
-    * @field_selector click on this elem opens options list
-    * @option_selector click on the desired option
-    */
     async baseSelect(field_selector, option_selector) {
         await actionsSelect.selectBySelector(this.page, field_selector, option_selector)
     }

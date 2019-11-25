@@ -17,6 +17,7 @@ export default class BusinessEnums {
             allegro_update: "update_allegro",
             facebook_update: "update_facebook",
             sold: "sold",
+            date_sold: "date_sold",
             olx_active: "active_olx",
             allegro_active: "active_allegro",
             facebook_active: "active_facebook",
