@@ -1,6 +1,8 @@
 import sheetReader from '../../../api/google_sheet/gsheet_reader.js'
 import BusinessEnums from "../../../../tasks.manager/business.enums"
 import changeArray from "../change.array";
+import GsheetData from "../../../../data/gsheet.data";
+import GsheetNewValues from "../../../../tasks.manager/olx.business.rules/gsheet.new.values";
 const EventEmitter = require('events').EventEmitter;
 const eventEmitter = new EventEmitter;
 const events = new BusinessEnums().emitedEvents;
@@ -10,6 +12,7 @@ let gsheetCreds = require('./integration/api/google_sheet/creds/shop-test-260410
 
 let spreadsheet = new sheetReader(gsheetKey, gsheetCreds, eventEmitter);
 let test = new ChangeArrayTest(eventEmitter);
+let gsheetNewValues = new GsheetNewValues();
 
 async function writeFreshItemList() {
     await test.addItemsToChangeArray(spreadsheet.freshItemList)
@@ -32,25 +35,26 @@ class ChangeArrayTest {
 
     constructor(eventEmitter) {
         this.eventEmitter = eventEmitter;
-        this.today = new Date();
+        this.gsheetData = new GsheetData();
     }
 
-    async addItemsToChangeArray() {
+    async addItemsToChangeArray(itemList) {
         await this.addItemsThenFail()
         await this.failThenAddItems()
         await this.addItemsSuccess()
     }
 
-    async addItemsThenFail() {
-
+    async addItemsThenFail(item) {
+        //TODO: implement this test
+        await gsheetNewValues.addItem(item, this.gsheetData, "testEditLink")
     }
 
     async failThenAddItems() {
-
+        //TODO: implement this test
     }
 
     async addItemsSuccess() {
-
+        //TODO: implement this test
     }
 
 }

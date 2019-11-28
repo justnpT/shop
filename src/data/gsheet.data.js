@@ -1,4 +1,4 @@
-export default class GsheetValues {
+export default class GsheetData {
 
     constructor() {
         this.today = new Date();

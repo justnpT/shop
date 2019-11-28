@@ -9,7 +9,7 @@ import ArchivePage from "./pages/archive/archive.page";
 import changeArray from "../../utils/change.array/change.array"
 import ActivePage from "./pages/active/active.page";
 import GsheetNewValues from "../../../tasks.manager/olx.business.rules/gsheet.new.values";
-import GsheetValues from "../../../data/gsheet.values";
+import GsheetData from "../../../data/gsheet.data";
 let creds = require("../../../../credentials/credentials")
 const itemKeys = new BusinessEnums().itemKeys
 const gsheetConditions = new GsheetConditions()
@@ -21,7 +21,7 @@ export default class olxManager {
         this.eventEmitter = eventEmitter;
         this.olxCreds = creds.olx;
         this.gdrivePath = creds.gdrive.productsPath;
-        this.gsheetValues = new GsheetValues();
+        this.gsheetData = new GsheetData();
     }
 
     async start() {
@@ -63,17 +63,11 @@ export default class olxManager {
         const archivePage = new ArchivePage(this.page)
         await archivePage.clickButtonActivate(item[itemKeys.title])
         // TODO: add assertion for link reactivation message
-        await gsheetNewValues.renewItem(item, this.gsheetValues)
+        await gsheetNewValues.renewItem(item, this.gsheetData)
         this.eventEmitter.emit(events.changeArrayReady)
     }
 
     async updateItem(item) {
-        // await this.start();
-        // await this.page.goto(item[itemKeys.olx_edit_link])
-        // const newOffer = new NewOffer(this.page)
-        // await newOffer.clickButtonAcceptTerms()
-        // await newOffer.clickButtonNext()
-        // const confirmPage = new AssertionConfirmPage(this.page)
         // go to itemEditLink, check name, title, description, photoes
         // update photoes only if the field value = 1
         // TODO: for considered item, compare what is on olx page to what comes from gsheet, and add new values on olx and save
@@ -89,7 +83,7 @@ export default class olxManager {
         await offerEndedModal.clickButtonCancel()
         // TODO: 2 weeks after sell, add removing photoes from gdrive, keep the folder and description for future use
         // TODO: 2 weeks after sell, add moving the whole sold item from admin tab to sold tab in gsheet
-        await gsheetNewValues.removeItem(item, this.gsheetValues)
+        await gsheetNewValues.removeItem(item, this.gsheetData)
         this.eventEmitter.emit(events.changeArrayReady)
     }
 
@@ -110,7 +104,7 @@ export default class olxManager {
         let promote = await newOffer.clickButtonNext()
         await promote.clickButtonAddWithoutPromotion()
         let editLink = 'i should get it from olx at some point of adding new item' // TODO: get editLink at some point
-        await gsheetNewValues.addItem(item, this.gsheetValues, editLink)
+        await gsheetNewValues.addItem(item, this.gsheetData, editLink)
         this.eventEmitter.emit(events.changeArrayReady)
     }
 
