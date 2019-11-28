@@ -3,26 +3,25 @@ import config from './config'
 import Login from "./pages/modal.login"
 import Home from "./pages/home.page"
 import NewOffer from "./pages/new.offer.page"
-import Category from "./pages/category.modal/category.modal"
 import GsheetConditions from "../../../tasks.manager/olx.business.rules/gsheet.conditions"
 import BusinessEnums from "../../../tasks.manager/business.enums"
-import AssertionConfirmPage from "./pages/new.offer.confirmpage.assertion";
 import ArchivePage from "./pages/archive/archive.page";
-let creds = require("../../../../credentials/credentials")
-const itemKeys = new BusinessEnums().itemKeys
-const olxBusinessRules = new GsheetConditions()
-const events = new BusinessEnums().emitedEvents
 import changeArray from "../../utils/change.array/change.array"
 import ActivePage from "./pages/active/active.page";
+import GsheetNewValues from "../../../tasks.manager/olx.business.rules/gsheet.new.values";
+import GsheetValues from "../../../data/gsheet.values";
+let creds = require("../../../../credentials/credentials")
+const itemKeys = new BusinessEnums().itemKeys
+const gsheetConditions = new GsheetConditions()
+const events = new BusinessEnums().emitedEvents
+const gsheetNewValues = new GsheetNewValues()
 
 export default class olxManager {
     constructor(eventEmitter) {
         this.eventEmitter = eventEmitter;
         this.olxCreds = creds.olx;
         this.gdrivePath = creds.gdrive.productsPath;
-        this.today = new Date();
-        this.itemExpirationDate = new Date(this.today)
-        this.itemExpirationDate.setDate(this.itemExpirationDate.getDate() + 30)
+        this.gsheetValues = new GsheetValues();
     }
 
     async start() {
@@ -47,10 +46,10 @@ export default class olxManager {
 
         for (let item of this.itemList) {
 
-            if (olxBusinessRules.addItem(item)) {await this.addNewItem(item)}
-            if (olxBusinessRules.renewItem(item)) {await this.renewItem(item)}
-            if (olxBusinessRules.updateItem(item)) {await this.updateItem(item)}
-            if (olxBusinessRules.removeItem(item)) {await this.removeItem(item)}
+            if (gsheetConditions.addItem(item)) {await this.addNewItem(item)}
+            if (gsheetConditions.renewItem(item)) {await this.renewItem(item)}
+            if (gsheetConditions.updateItem(item)) {await this.updateItem(item)}
+            if (gsheetConditions.removeItem(item)) {await this.removeItem(item)}
         }
 
         await this.stop()
@@ -64,8 +63,7 @@ export default class olxManager {
         const archivePage = new ArchivePage(this.page)
         await archivePage.clickButtonActivate(item[itemKeys.title])
         // TODO: add assertion for link reactivation message
-        changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_active, new_value: 1})
-        changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_expiration_date, new_value: this.itemExpirationDate})
+        await gsheetNewValues.renewItem(item, this.gsheetValues)
         this.eventEmitter.emit(events.changeArrayReady)
     }
 
@@ -91,12 +89,7 @@ export default class olxManager {
         await offerEndedModal.clickButtonCancel()
         // TODO: 2 weeks after sell, add removing photoes from gdrive, keep the folder and description for future use
         // TODO: 2 weeks after sell, add moving the whole sold item from admin tab to sold tab in gsheet
-        changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_active, new_value: "sold"})
-        changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_update, new_value: "sold"})
-        changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_info_link, new_value: "sold"})
-        changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_edit_link, new_value: "sold"})
-        changeArray.add({name: item[itemKeys.name], field: itemKeys.photoes, new_value: "sold"})
-        changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_start_date, new_value: this.today})
+        await gsheetNewValues.removeItem(item, this.gsheetValues)
         this.eventEmitter.emit(events.changeArrayReady)
     }
 
@@ -116,14 +109,8 @@ export default class olxManager {
         await newOffer.fillInputDescriptionFromGdrive(this.gdrivePath, item)
         let promote = await newOffer.clickButtonNext()
         await promote.clickButtonAddWithoutPromotion()
-        // TODO: get editLink at some point
-        let editLink = 'i should get it from olx at some point of adding new item'
-        changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_active, new_value: "active"})
-        changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_update, new_value: "no"})
-        changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_start_date, new_value: this.today})
-        changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_expiration_date, new_value: this.itemExpirationDate})
-        changeArray.add({name: item[itemKeys.name], field: itemKeys.photoes, new_value: "updated"})
-        changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_edit_link, new_value: editLink})
+        let editLink = 'i should get it from olx at some point of adding new item' // TODO: get editLink at some point
+        await gsheetNewValues.addItem(item, this.gsheetValues, editLink)
         this.eventEmitter.emit(events.changeArrayReady)
     }
 
