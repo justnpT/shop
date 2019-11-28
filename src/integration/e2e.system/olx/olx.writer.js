@@ -4,15 +4,15 @@ import Login from "./pages/modal.login"
 import Home from "./pages/home.page"
 import NewOffer from "./pages/new.offer.page"
 import Category from "./pages/category.modal/category.modal"
-import OlxBusinessRules from "../../../tasks_manager/olxBusinessRules"
-import BusinessEnums from "./../../../tasks_manager/businessEnums"
+import OlxBusinessRules from "../../../tasks.manager/olxBusinessRules"
+import BusinessEnums from "../../../tasks.manager/businessEnums"
 import AssertionConfirmPage from "./pages/new.offer.confirmpage.assertion";
 import ArchivePage from "./pages/archive/archive.page";
 let creds = require("../../../../credentials/credentials")
 const itemKeys = new BusinessEnums().itemKeys
 const olxBusinessRules = new OlxBusinessRules()
 const events = new BusinessEnums().emitedEvents
-import changeArray from "./change.array"
+import changeArray from "../../utils/change.array/change.array"
 import ActivePage from "./pages/active/active.page";
 
 export default class olxManager {

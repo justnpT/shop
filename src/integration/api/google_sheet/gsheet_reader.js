@@ -1,7 +1,7 @@
 var GoogleSpreadsheet = require('google-spreadsheet')
 var async = require('async');
-import BusinessEnums from "./../../../tasks_manager/businessEnums"
-import changeArray from "../../../integration/user/olx/change.array"
+import BusinessEnums from "../../../tasks.manager/businessEnums"
+import changeArray from "../../utils/change.array/change.array"
 const events = new BusinessEnums().emitedEvents
 
 export default class sheetReader {
