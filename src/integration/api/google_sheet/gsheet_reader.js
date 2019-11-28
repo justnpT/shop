@@ -1,13 +1,13 @@
 var GoogleSpreadsheet = require('google-spreadsheet')
 var async = require('async');
-import BusinessEnums from "../../../tasks.manager/businessEnums"
+import BusinessEnums from "../../../tasks.manager/business.enums"
 import changeArray from "../../utils/change.array/change.array"
 const events = new BusinessEnums().emitedEvents
 
 export default class sheetReader {
-    constructor(spreadsheet_key, eventEmitter) {
-        this.doc = new GoogleSpreadsheet(spreadsheet_key);
-        this.creds = require('./creds/shop-250916-e18ae184fd04.json');
+    constructor(gsheet_key, gsheet_creds, eventEmitter) {
+        this.doc = new GoogleSpreadsheet(gsheet_key);
+        this.creds = gsheet_creds;
         this.first_col = 1; // A
         this.last_col = 20; // S
         this.captionRow = 4;

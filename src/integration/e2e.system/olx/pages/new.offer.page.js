@@ -1,7 +1,7 @@
 import BasePage from "./base.page";
 import Category from "./category.modal/category.modal";
 import Promote from "./promote/promote.page";
-import BusinessEnums from "../../../../tasks.manager/businessEnums";
+import BusinessEnums from "../../../../tasks.manager/business.enums";
 import changeArray from "../../../utils/change.array/change.array";
 import CategoryAssertions from "./category.modal/category.modal.assertions";
 const itemKeys = new BusinessEnums().itemKeys
