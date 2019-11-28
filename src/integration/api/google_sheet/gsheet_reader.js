@@ -30,10 +30,9 @@ export default class sheetReader {
     async updateItemList() {
         this.changeArray = changeArray.get()
         await this.manageGsheet(this.setItemList)
-        changeArray.emptyData()
     }
 
-    /**
+    /**t
      * Provide manageGsheet with proper function and execute that like in runner.js
      */
     async manageGsheet(manageCells) {

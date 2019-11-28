@@ -25,10 +25,6 @@ export default class BasePage {
         await actionsClick.clickByOptionText(this.page, selectorOfList, nthElemWithText, optionText, nthElemToClick)
     }
 
-    async baseGetListOfTexts(selectorOfList, nthSelectorInTheList, noSpacesText = false, everyNthElem = 1) {
-        return await actionsGet.getListOfCurrentOptions(this.page, selectorOfList, nthSelectorInTheList, noSpacesText, everyNthElem)
-    }
-
     async baseFillInput(selector, value) {
         await actionsType.typeAfter_expAnim(this.page, selector, value)
     }

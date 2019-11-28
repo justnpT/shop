@@ -15,7 +15,11 @@ class ChangeArray {
         return this._data
     }
 
-    emptyData(){
+    saveInFile(){
+        //TODO: save change.array data in json file to restore if something goes wrong
+    }
+
+    async emptyData(){
         this._data = [];
     }
 }

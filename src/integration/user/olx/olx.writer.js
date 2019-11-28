@@ -3,7 +3,7 @@ import config from './config'
 import Login from "./pages/modal.login"
 import Home from "./pages/home.page"
 import NewOffer from "./pages/new.offer.page"
-import Category from "./pages/modal.category"
+import Category from "./pages/category.modal/category.modal"
 import OlxBusinessRules from "../../../tasks_manager/olxBusinessRules"
 import BusinessEnums from "./../../../tasks_manager/businessEnums"
 import AssertionConfirmPage from "./pages/new.offer.confirmpage.assertion";

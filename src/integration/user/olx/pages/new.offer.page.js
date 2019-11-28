@@ -1,8 +1,9 @@
 import BasePage from "./base.page";
-import Category from "./modal.category";
+import Category from "./category.modal/category.modal";
 import Promote from "./promote/promote.page";
 import BusinessEnums from "../../../../tasks_manager/businessEnums";
 import changeArray from "../change.array";
+import CategoryAssertions from "./category.modal/category.modal.assertions";
 const itemKeys = new BusinessEnums().itemKeys
 
 export default class NewOffer extends BasePage {
@@ -68,9 +69,10 @@ export default class NewOffer extends BasePage {
 
     async selectCategory(item) {
         let categoryPage = await this.clickButtonCategory()
+        let categoryAssertions = new CategoryAssertions(this.page)
         if(item[itemKeys.category]=="autochoose") {
             await categoryPage.clickButtonFirstCategory()
-            let categories = await categoryPage.getChoosenCategories()
+            let categories = await categoryAssertions.getChoosenCategories()
             let newValue = {}
             for (let i = 0; i < categories.length; i++) {newValue['cat'+(i+1)] = categories[i]}
             changeArray.add({name: item[itemKeys.name], field: itemKeys.category, new_value: JSON.stringify(newValue)})

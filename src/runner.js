@@ -1,6 +1,7 @@
 import sheetReader from './integration/api/google_sheet/gsheet_reader.js'
 import olxManager from './integration/user/olx/olx.writer.js'
 import BusinessEnums from "./tasks_manager/businessEnums"
+import changeArray from "./integration/user/olx/change.array";
 const EventEmitter = require('events').EventEmitter;
 const eventEmitter = new EventEmitter;
 const events = new BusinessEnums().emitedEvents;
@@ -13,7 +14,9 @@ async function writeFreshItemList() {
 }
 
 async function updateItemList() {
+    await changeArray.saveInFile()
     await spreadsheet.updateItemList()
+    await changeArray.emptyData()
 }
 
 (async() => {
