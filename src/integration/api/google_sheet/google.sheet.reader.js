@@ -11,16 +11,16 @@ export default class sheetReader {
         this.first_col = 1; // A
         this.last_col = 20; // S
         this.captionRow = 4;
-        this.currentValuesList = [];
+        this.freshItems = [];
         this.eventEmitter = eventEmitter;
     }
 
     async readFreshItemListMock() {
-        this.currentValuesList = require("./mocks/mock6")
-        this.eventEmitter.emit(events.gsheetReadingFinished, this.currentValuesList)
+        this.freshItems = require("./mocks/mock6")
+        this.eventEmitter.emit(events.finishedReadingGsheet, this.freshItems)
     }
 
-    async readCurrentValues() {
+    async readFreshItems() {
         await this.manageGsheet(this.getCurrentValues)
     }
 
@@ -82,20 +82,20 @@ export default class sheetReader {
         for (let currentRow = this.captionRow + 1; currentRow <= last_row; currentRow++) {
 
             let analyzedRow = cells.filter((value) => value['row'] == currentRow)
-            this.currentValuesList.push({})
+            this.freshItems.push({})
             for (let captionIndex = 0; captionIndex < captionList.length; captionIndex++) {
                 let cell = analyzedRow.filter((value => value['col'] == captionIndex + 1))
                 if (cell[0]) {
-                    let evaluatedItem = this.currentValuesList.pop()
+                    let evaluatedItem = this.freshItems.pop()
                     if (!cell[0]) {
                         console.log(cell[0])
                     }
                     evaluatedItem[captionList[captionIndex]] = cell[0]['_value']
-                    this.currentValuesList.push(evaluatedItem)
+                    this.freshItems.push(evaluatedItem)
                 }
             }
         }
-        this.eventEmitter.emit(events.gsheetReadingFinished, this.currentValuesList)
+        this.eventEmitter.emit(events.finishedReadingGsheet, this.freshItems)
         // step();
     }
 

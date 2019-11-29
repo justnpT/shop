@@ -40,21 +40,17 @@ export default class olxManager {
         if (this.page) {await this.setup.stop()}
     }
 
-    async manageOlx(itemList) {
+    async startBusinessTasks(itemList) {
         if (!itemList) {throw new Error("no items in itemList");}
         this.itemList = itemList
 
         for (let item of this.itemList) {
-
             if (gsheetConditions.addItem(item)) {await this.addNewItem(item)}
             if (gsheetConditions.renewItem(item)) {await this.renewItem(item)}
             if (gsheetConditions.updateItem(item)) {await this.updateItem(item)}
             if (gsheetConditions.removeItem(item)) {await this.removeItem(item)}
         }
-
         await this.stop()
-        // TODO: make sure all desired updates are on changeArray and do: this.eventEmitter.emit(events.changeArrayReady, changeArray)
-
     }
 
     async renewItem(item) {

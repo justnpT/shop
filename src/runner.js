@@ -12,7 +12,7 @@ let spreadsheet = new sheetReader(gsheetKey, gsheetCreds, eventEmitter);
 let olx = new olxManager(eventEmitter);
 
 async function performBusinessTasks() {
-    await olx.manageOlx(spreadsheet.currentValuesList)
+    await olx.startBusinessTasks(spreadsheet.freshItems)
 }
 
 async function writeToGoogleSheet() {
@@ -20,8 +20,8 @@ async function writeToGoogleSheet() {
 }
 
 (async() => {
-    eventEmitter.on(events.gsheetReadingFinished, performBusinessTasks)
+    eventEmitter.on(events.finishedReadingGsheet, performBusinessTasks)
     eventEmitter.on(events.changeArrayReadyToWrite, writeToGoogleSheet)
-    await spreadsheet.readCurrentValues();
+    await spreadsheet.readFreshItems();
     // await spreadsheet.readFreshItemListMock();
 })();
