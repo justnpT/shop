@@ -16,7 +16,13 @@ class ChangeArray {
     }
 
     saveInFile(){
-        //TODO: save change.array data in json file to restore if something goes wrong
+        console.log("saving changeArray to json file: "+e.text)
+        let fs = require('fs');
+        fs.writeFile("snapshots/"+new Date()+"test.txt", this._data, function(err) {
+            if (err) {
+                console.log(err);
+            }
+        });
     }
 
     async emptyData(){

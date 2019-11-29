@@ -3,18 +3,18 @@ import config from './config'
 import Login from "./pages/modal.login"
 import Home from "./pages/home.page"
 import NewOffer from "./pages/new.offer.page"
-import GsheetConditions from "../../../tasks.manager/olx.business.rules/gsheet.conditions"
+import GoogleSheetConditions from "../../../tasks.manager/olx.business.rules/google.sheet.conditions"
 import BusinessEnums from "../../../tasks.manager/business.enums"
 import ArchivePage from "./pages/archive/archive.page";
 import changeArray from "../../utils/change.array/change.array"
 import ActivePage from "./pages/active/active.page";
-import GsheetNewValues from "../../../tasks.manager/olx.business.rules/gsheet.new.values";
+import EditGoogleSheet from "../../../tasks.manager/olx.business.rules/edit.google.sheet";
 import GsheetData from "../../../data/gsheet.data";
 let creds = require("../../../../credentials/credentials")
 const itemKeys = new BusinessEnums().itemKeys
-const gsheetConditions = new GsheetConditions()
+const gsheetConditions = new GoogleSheetConditions()
 const events = new BusinessEnums().emitedEvents
-const gsheetNewValues = new GsheetNewValues()
+const gsheetNewValues = new EditGoogleSheet()
 
 export default class olxManager {
     constructor(eventEmitter) {
@@ -64,7 +64,7 @@ export default class olxManager {
         await archivePage.clickButtonActivate(item[itemKeys.title])
         // TODO: add assertion for link reactivation message
         await gsheetNewValues.renewItem(item, this.gsheetData)
-        this.eventEmitter.emit(events.changeArrayReady)
+        this.eventEmitter.emit(events.changeArrayReadyToWrite)
     }
 
     async updateItem(item) {
@@ -84,7 +84,7 @@ export default class olxManager {
         // TODO: 2 weeks after sell, add removing photoes from gdrive, keep the folder and description for future use
         // TODO: 2 weeks after sell, add moving the whole sold item from admin tab to sold tab in gsheet
         await gsheetNewValues.removeItem(item, this.gsheetData)
-        this.eventEmitter.emit(events.changeArrayReady)
+        this.eventEmitter.emit(events.changeArrayReadyToWrite)
     }
 
     async addNewItem(item) {
@@ -105,7 +105,7 @@ export default class olxManager {
         await promote.clickButtonAddWithoutPromotion()
         let editLink = 'i should get it from olx at some point of adding new item' // TODO: get editLink at some point
         await gsheetNewValues.addItem(item, this.gsheetData, editLink)
-        this.eventEmitter.emit(events.changeArrayReady)
+        this.eventEmitter.emit(events.changeArrayReadyToWrite)
     }
 
     getPhotoes(itemName) {

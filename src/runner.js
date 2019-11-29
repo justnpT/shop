@@ -1,4 +1,4 @@
-import sheetReader from './integration/api/google_sheet/gsheet_reader.js'
+import sheetReader from './integration/api/google_sheet/google.sheet.reader.js'
 import olxManager from './integration/e2e.system/olx/olx.writer.js'
 import BusinessEnums from "./tasks.manager/business.enums"
 import changeArray from "./integration/utils/change.array/change.array";
@@ -11,19 +11,17 @@ let gsheetCreds = require('./integration/api/google_sheet/creds/shop-250916-e18a
 let spreadsheet = new sheetReader(gsheetKey, gsheetCreds, eventEmitter);
 let olx = new olxManager(eventEmitter);
 
-async function writeFreshItemList() {
-    await olx.manageOlx(spreadsheet.freshItemList)
+async function performBusinessTasks() {
+    await olx.manageOlx(spreadsheet.currentValuesList)
 }
 
-async function updateItemList() {
-    await changeArray.saveInFile()
-    await spreadsheet.updateItemList()
-    await changeArray.emptyData()
+async function writeToGoogleSheet() {
+    await spreadsheet.writeNewValues()
 }
 
 (async() => {
-    eventEmitter.on(events.itemListUpdated, writeFreshItemList)
-    eventEmitter.on(events.changeArrayReady, updateItemList)
-    await spreadsheet.readFreshItemList();
+    eventEmitter.on(events.gsheetReadingFinished, performBusinessTasks)
+    eventEmitter.on(events.changeArrayReadyToWrite, writeToGoogleSheet)
+    await spreadsheet.readCurrentValues();
     // await spreadsheet.readFreshItemListMock();
 })();

@@ -2,8 +2,8 @@ export default class BusinessEnums {
 
     constructor() {
         this.emitedEvents = {
-            itemListUpdated: "itemListUpdated",
-            changeArrayReady: "changeArrayReady"
+            gsheetReadingFinished: "event fired from gsheet.reader when values are ready to use",
+            changeArrayReadyToWrite: "event fired from olx.writer when finished adding/removing/updating new item"
         }
 
         this.itemKeys = {

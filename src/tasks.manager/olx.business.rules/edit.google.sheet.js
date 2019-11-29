@@ -2,7 +2,7 @@ import BusinessEnums from "../business.enums"
 import changeArray from "../../integration/utils/change.array/change.array";
 const itemKeys = new BusinessEnums().itemKeys
 
-export default class GsheetNewValues {
+export default class EditGoogleSheet {
 
     renewItem(item, data) {
         changeArray.add({name: item[itemKeys.name], field: itemKeys.olx_active, new_value: data.activeTrue})

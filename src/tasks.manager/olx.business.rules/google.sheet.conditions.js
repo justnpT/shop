@@ -1,7 +1,7 @@
 import BusinessEnums from "../business.enums"
 const itemKeys = new BusinessEnums().itemKeys
 
-export default class GsheetConditions {
+export default class GoogleSheetConditions {
 
     renewItem(item) {
         let itemExpirationDate = new Date(item[itemKeys.olx_expiration_date]);
