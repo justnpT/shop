@@ -1,9 +1,8 @@
-import sheetReader from '../../../api/google_sheet/google.sheet.reader.js'
-import BusinessEnums from "../../../../tasks.manager/business.enums"
-import changeArray from "../change.array";
-import GsheetData from "../../../../data/gsheet.data";
-import EditGoogleSheet from "../../../../tasks.manager/olx.business.rules/edit.google.sheet";
-import GoogleSheetConditions from "../../../../tasks.manager/olx.business.rules/google.sheet.conditions";
+import sheetReader from '../integration/api/google_sheet/google.sheet.reader.js'
+import BusinessEnums from "../data/business.enums"
+import GsheetData from "../data/gsheet.data";
+import EditGoogleSheet from "../data/olx.business.rules/edit.google.sheet";
+import GoogleSheetConditions from "../data/olx.business.rules/google.sheet.conditions";
 const EventEmitter = require('events').EventEmitter;
 const eventEmitter = new EventEmitter;
 const events = new BusinessEnums().emitedEvents;
@@ -14,25 +13,6 @@ const gsheetConditions = new GoogleSheetConditions()
 let spreadsheet = new sheetReader(gsheetKey, gsheetCreds, eventEmitter);
 let test = new ActionsSuccessTest(eventEmitter);
 let editGoogleSheet = new EditGoogleSheet();
-
-/*
-* writeFreshItemList function represents what happens eg. during the OLX write manager run
-* This should be able to handle errors in elegant way, so that in the end the ChangeArray gets written to google doc
-* */
-async function performBusinessTasks() {
-    await test.startBusinessTasks(spreadsheet.freshItems)
-}
-
-//TODO: check if this method is necessary or maybe it can be put into async withouth the additional function
-async function writeToGoogleSheet() {
-    await spreadsheet.writeNewValues()
-}
-
-(async() => {
-    eventEmitter.on(events.finishedReadingGsheet, performBusinessTasks)
-    eventEmitter.on(events.changeArrayReadyToWrite, writeToGoogleSheet)
-    await spreadsheet.readFreshItems();
-})();
 
 class ActionsSuccessTest {
 

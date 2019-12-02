@@ -1,5 +1,5 @@
 import BusinessEnums from "../business.enums"
-import changeArray from "../../integration/utils/change.array/change.array";
+import changeArray from "../../utils/change.array/change.array";
 const itemKeys = new BusinessEnums().itemKeys
 
 export default class EditGoogleSheet {

@@ -3,12 +3,12 @@ import config from './config'
 import Login from "./pages/modal.login"
 import Home from "./pages/home.page"
 import NewOffer from "./pages/new.offer.page"
-import GoogleSheetConditions from "../../../tasks.manager/olx.business.rules/google.sheet.conditions"
-import BusinessEnums from "../../../tasks.manager/business.enums"
+import GoogleSheetConditions from "../../../data/olx.business.rules/google.sheet.conditions"
+import BusinessEnums from "../../../data/business.enums"
 import ArchivePage from "./pages/archive/archive.page";
-import changeArray from "../../utils/change.array/change.array"
+import changeArray from "../../../utils/change.array/change.array"
 import ActivePage from "./pages/active/active.page";
-import EditGoogleSheet from "../../../tasks.manager/olx.business.rules/edit.google.sheet";
+import EditGoogleSheet from "../../../data/olx.business.rules/edit.google.sheet";
 import GsheetData from "../../../data/gsheet.data";
 let creds = require("../../../../credentials/credentials")
 const itemKeys = new BusinessEnums().itemKeys

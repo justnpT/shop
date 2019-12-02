@@ -1,7 +1,7 @@
 import sheetReader from './integration/api/google_sheet/google.sheet.reader.js'
 import olxManager from './integration/e2e.system/olx/olx.writer.js'
-import BusinessEnums from "./tasks.manager/business.enums"
-import changeArray from "./integration/utils/change.array/change.array";
+import BusinessEnums from "./data/business.enums"
+import changeArray from "./utils/change.array/change.array";
 const EventEmitter = require('events').EventEmitter;
 const eventEmitter = new EventEmitter;
 const events = new BusinessEnums().emitedEvents;

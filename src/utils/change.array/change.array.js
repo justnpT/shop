@@ -2,6 +2,9 @@
  * Array for updating gsheet with new values
  * [name: {name(ID)_of_the_item}, field: {itemKeys.field_name}, new_value: {whatever_you_wish}]
  */
+import FileManager from "../files.manager/file.manager";
+import BusinessEnums from "../../data/business.enums";
+
 class ChangeArray {
     constructor(){
         this._data = [];
@@ -16,13 +19,15 @@ class ChangeArray {
     }
 
     saveInFile(){
-        console.log("saving changeArray to json file: "+e.text)
-        let fs = require('fs');
-        fs.writeFile("snapshots/"+new Date()+"test.txt", this._data, function(err) {
-            if (err) {
-                console.log(err);
-            }
-        });
+        let fileManager = new FileManager()
+        fileManager.createFile("snapshots/"+new Date()+"test.txt", this._data)
+    }
+
+    writeDataFromMock(mockPath, eventEmitter) {
+        let events = new BusinessEnums().emitedEvents;
+
+        // TODO: write data from the mock into changeArrayStyle
+        eventEmitter.emit(events.changeArrayReadyToWrite)
     }
 
     async emptyData(){
