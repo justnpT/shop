@@ -2,7 +2,7 @@ import sheetReader from '../integration/api/google_sheet/google.sheet.reader'
 import BusinessEnums from "../data/business.enums"
 import FileManager from "../utils/files.manager/file.manager";
 import changeArray from "../utils/change.array/change.array";
-import FailTestThenAction from "./fail.then.actions.test";
+import FailThenActionTest from "./fail.then.actions.test";
 const EventEmitter = require('events').EventEmitter;
 const eventEmitter = new EventEmitter;
 const events = new BusinessEnums().emitedEvents;
@@ -10,7 +10,7 @@ const events = new BusinessEnums().emitedEvents;
 let gsheetKey = '1xdd4OySbtCPXEudOx8eWkUbHYvgG-nI65hyuJ9pHKQQ'
 let gsheetCreds = require('../integration/api/google_sheet/creds/shop-test-260410-a80eb8abee2e.json');
 let spreadsheet = new sheetReader(gsheetKey, gsheetCreds, eventEmitter);
-let test = new FailTestThenAction(eventEmitter);
+let test = new FailThenActionTest(eventEmitter);
 let fileManger = new FileManager()
 let pathToMock = "./src/test/tempItemList.txt"
 

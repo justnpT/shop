@@ -1,13 +1,14 @@
 import BusinessEnums from "../data/business.enums"
-import EditGoogleSheet from "../data/olx.business.rules/edit.google.sheet";
+import ChangeArrayActions from "../data/olx.business.rules/changeArrayActions";
 import GoogleSheetConditions from "../data/olx.business.rules/google.sheet.conditions";
 import GsheetData from "../data/gsheet.data";
+import {handleError} from "./decorators";
 const events = new BusinessEnums().emitedEvents;
 
 const gsheetConditions = new GoogleSheetConditions()
-let editGoogleSheet = new EditGoogleSheet();
+let editGoogleSheet = new ChangeArrayActions();
 
-export default class FailTestThenAction {
+export default class FailThenActionTest {
 
     constructor(eventEmitter) {
         this.eventEmitter = eventEmitter;
@@ -26,13 +27,17 @@ export default class FailTestThenAction {
         }
     }
 
+    @handleError()
     async failThenAddItems(item) {
+        //TODO: apply decorator to the methods so that the error handling is ensured by the decorator:
+        // https://www.sitepoint.com/javascript-decorators-what-they-are/
         throw new Error("mock/test: error thrown before adding item")
         console.log("mock/test: appropriate actions are being done by the shop system, then write to gsheet")
         await editGoogleSheet.addItem(item, this.gsheetData, "testEditLink")
         this.eventEmitter.emit(events.changeArrayReadyToWrite)
     }
 
+    @handleError()
     async failThenRenewItems(item) {
         throw new Error("mock/test: error thrown before renewing item")
         console.log("mock/test: appropriate actions are being done by the shop system, then write to gsheet")
@@ -40,6 +45,7 @@ export default class FailTestThenAction {
         this.eventEmitter.emit(events.changeArrayReadyToWrite)
     }
 
+    @handleError()
     async failThenUpdateItems(item) {
         throw new Error("mock/test: error thrown before update item")
         console.log("mock/test: appropriate actions are being done by the shop system, then write to gsheet")
@@ -47,6 +53,7 @@ export default class FailTestThenAction {
         this.eventEmitter.emit(events.changeArrayReadyToWrite)
     }
 
+    @handleError()
     async failThenRemoveItems(item) {
         throw new Error("mock/test: error thrown before remove item")
         console.log("mock/test: appropriate actions are being done by the shop system, then write to gsheet")

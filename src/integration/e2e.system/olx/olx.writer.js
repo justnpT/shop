@@ -8,13 +8,13 @@ import BusinessEnums from "../../../data/business.enums"
 import ArchivePage from "./pages/archive/archive.page";
 import changeArray from "../../../utils/change.array/change.array"
 import ActivePage from "./pages/active/active.page";
-import EditGoogleSheet from "../../../data/olx.business.rules/edit.google.sheet";
+import ChangeArrayActions from "../../../data/olx.business.rules/changeArrayActions";
 import GsheetData from "../../../data/gsheet.data";
 let creds = require("../../../../credentials/credentials")
 const itemKeys = new BusinessEnums().itemKeys
 const gsheetConditions = new GoogleSheetConditions()
 const events = new BusinessEnums().emitedEvents
-const gsheetNewValues = new EditGoogleSheet()
+const gsheetNewValues = new ChangeArrayActions()
 
 export default class olxManager {
     constructor(eventEmitter) {

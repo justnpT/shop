@@ -1,7 +1,7 @@
 import sheetReader from '../integration/api/google_sheet/google.sheet.reader.js'
 import BusinessEnums from "../data/business.enums"
 import GsheetData from "../data/gsheet.data";
-import EditGoogleSheet from "../data/olx.business.rules/edit.google.sheet";
+import ChangeArrayActions from "../data/olx.business.rules/changeArrayActions";
 import GoogleSheetConditions from "../data/olx.business.rules/google.sheet.conditions";
 const EventEmitter = require('events').EventEmitter;
 const eventEmitter = new EventEmitter;
@@ -12,7 +12,7 @@ let gsheetCreds = require('./integration/api/google_sheet/creds/shop-test-260410
 const gsheetConditions = new GoogleSheetConditions()
 let spreadsheet = new sheetReader(gsheetKey, gsheetCreds, eventEmitter);
 let test = new ActionsThenFailTest(eventEmitter);
-let editGoogleSheet = new EditGoogleSheet();
+let editGoogleSheet = new ChangeArrayActions();
 
 class ActionsThenFailTest {
 
