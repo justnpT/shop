@@ -9,7 +9,9 @@
     "request": "^2.88.0"
   },
   "scripts": {
+    "runner": "node -r esm .\\src\\runner.js",
     "debug": "node %NODE_DEBUG_OPTION% -r esm .\\src\\runner.js",
-    "runner": "node -r esm .\\src\\runner.js"
+    "test": "node -r esm .\\src\\test\\test.runner.js",
+    "test-debug": "node %NODE_DEBUG_OPTION% -r esm .\\src\\test\\test.runner.js"
   }
 }
