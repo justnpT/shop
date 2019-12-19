@@ -1,35 +1,41 @@
 var GoogleSpreadsheet = require('google-spreadsheet')
 var async = require('async');
-import BusinessEnums from "./../../../tasks_manager/businessEnums"
-import changeArray from "../../../integration/user/olx/change.array"
+import BusinessEnums from "../../../data/business.enums"
+import changeArray from "../../../utils/change.array/change.array"
 const events = new BusinessEnums().emitedEvents
 
 export default class sheetReader {
-    constructor(spreadsheet_key, eventEmitter) {
-        this.doc = new GoogleSpreadsheet(spreadsheet_key);
-        this.creds = require('./creds/shop-250916-e18ae184fd04.json');
+    constructor(gsheet_key, gsheet_creds, eventEmitter) {
+        this.doc = new GoogleSpreadsheet(gsheet_key);
+        this.creds = gsheet_creds;
         this.first_col = 1; // A
         this.last_col = 20; // S
         this.captionRow = 4;
-        this.freshItemList = [];
+        this.freshItems = [];
         this.eventEmitter = eventEmitter;
     }
 
     async readFreshItemListMock() {
-        this.freshItemList = require("./mocks/mock6")
-        this.eventEmitter.emit(events.itemListUpdated, this.freshItemList)
+        this.freshItems = require("./mocks/mock6")
+        this.eventEmitter.emit(events.finishedReadingGsheet, this.freshItems)
     }
 
-    async readFreshItemList() {
-        await this.manageGsheet(this.getFreshItemList)
+    async readFreshItems() {
+        await this.manageGsheet(this.getCurrentValues)
     }
 
     /**
      * Inserts new_value to every of the specified fields.
      */
-    async updateItemList() {
+    async writeNewValues() {
         this.changeArray = changeArray.get()
-        await this.manageGsheet(this.setItemList)
+        try {
+            await this.manageGsheet(this.saveNewValues)
+        } catch (e) {
+            console.error("error while writing to gsheet: "+e.text)
+            await changeArray.saveInFile()
+        }
+        await changeArray.emptyData()
     }
 
     /**
@@ -66,7 +72,7 @@ export default class sheetReader {
     /**
      * Iterate over dashboard to get all items in their current state
      */
-    getFreshItemList(err, cells) {
+    getCurrentValues(err, cells) {
         let captionList = []
         let last_row = cells[cells.length - 1]['row']
         let captionCells = cells.filter((value) => value['row'] == this.captionRow)
@@ -76,20 +82,20 @@ export default class sheetReader {
         for (let currentRow = this.captionRow + 1; currentRow <= last_row; currentRow++) {
 
             let analyzedRow = cells.filter((value) => value['row'] == currentRow)
-            this.freshItemList.push({})
+            this.freshItems.push({})
             for (let captionIndex = 0; captionIndex < captionList.length; captionIndex++) {
                 let cell = analyzedRow.filter((value => value['col'] == captionIndex + 1))
                 if (cell[0]) {
-                    let evaluatedItem = this.freshItemList.pop()
+                    let evaluatedItem = this.freshItems.pop()
                     if (!cell[0]) {
                         console.log(cell[0])
                     }
                     evaluatedItem[captionList[captionIndex]] = cell[0]['_value']
-                    this.freshItemList.push(evaluatedItem)
+                    this.freshItems.push(evaluatedItem)
                 }
             }
         }
-        this.eventEmitter.emit(events.itemListUpdated, this.freshItemList)
+        this.eventEmitter.emit(events.finishedReadingGsheet, this.freshItems)
         // step();
     }
 
@@ -97,7 +103,7 @@ export default class sheetReader {
      * this.changeArray needs to be field with at least one elemnet {} of such structure:
      * {name: {name(ID)_of_the_item}, field: {itemKeys.field_name}, new_value: {whatever_you_wish}}
      */
-    setItemList(err, cells) {
+    saveNewValues(err, cells) {
 
         if (!this.changeArray) {
             throw new Error("no items in changeArray")

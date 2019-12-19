@@ -1,7 +1,7 @@
-import BusinessEnums from "./businessEnums"
+import BusinessEnums from "../business.enums"
 const itemKeys = new BusinessEnums().itemKeys
 
-export default class OlxBusinessRules {
+export default class GoogleSheetConditions {
 
     renewItem(item) {
         let itemExpirationDate = new Date(item[itemKeys.olx_expiration_date]);
@@ -23,7 +23,8 @@ export default class OlxBusinessRules {
     }
 
     removeItem(item) {
-        if (item[itemKeys.sold] == 1) {console.log(('Deactivating sold item: '+item[itemKeys.name])); return true}
+        if ((item[itemKeys.sold] == 1) && (item[itemKeys.olx_active] != 1))
+        {console.log(('Deactivating sold item: '+item[itemKeys.name])); return true}
     }
 
 }

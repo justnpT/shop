@@ -1,4 +1,4 @@
-import BasePage from "./base.page";
+import BasePage from "../base.page";
 
 export default class Category extends BasePage {
 
@@ -27,8 +27,4 @@ export default class Category extends BasePage {
         await this.baseClickButton(this.buttonFirstCategory)
     }
 
-    //TODO: this should be assertion class of modal.category, and baseGetListOfText should not be part of base.page
-    async getChoosenCategories() {
-        return await this.baseGetListOfTexts(this.listOfChoosenCategories, this.nthElemInThelistOfChoosenCategories, false, 2)
-    }
 }
