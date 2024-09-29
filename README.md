@@ -1,5 +1,5 @@
 # shop
-Lets sell some shit
+Lets sell
 
 links useful for authenticating google spreadsheet:
 
